@@ -138,6 +138,31 @@ body.handbook .progress{display:none}
 .mapgrid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:clamp(14px,2.4vw,36px);align-items:start;margin-top:.8em}
 .mapgrid .zone{padding:10px 16px}.mapgrid .zones{display:grid;gap:10px}
 @media(max-width:860px){.mapgrid{grid-template-columns:1fr}}
+/* live explorer: click a row -> what it is + link to the real repo */
+.vlive{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:20px;align-items:start;margin:.8em 0 .4em}
+.vlive .vsc{max-width:none}
+.vlive .vr{cursor:pointer}
+.vlive .vr:focus-visible{outline:2px solid #007fd4;outline-offset:-2px}
+.vlive .vr.sel{background:#37373d;box-shadow:inset 0 0 0 1px #4a90d9}
+.vlive .vr.sel.h-g{background:rgba(79,179,122,.28)}
+.vcap{font-size:.82em;color:var(--muted);margin:0 0 1.3em;line-height:1.5;max-width:none}
+.vpanel{position:sticky;top:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+.vp-path{font:700 13.5px/1.4 var(--mono);word-break:break-all;margin-bottom:.5em}
+.vp-tag{display:inline-block;font:700 10.5px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;padding:.4em .8em;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--muted)}
+.vp-tag.t-g{color:var(--basil);border-color:var(--basil);background:color-mix(in srgb,var(--basil) 14%,transparent)}
+.vp-tag.t-b{color:var(--sky);border-color:var(--sky);background:color-mix(in srgb,var(--sky) 12%,transparent)}
+.vp-tag.t-y{color:#9a6a00;border-color:var(--cheese);background:color-mix(in srgb,var(--cheese) 22%,transparent)}
+:root[data-theme="dark"] .vp-tag.t-y{color:var(--cheese)}
+.vp-tag.t-p{color:var(--plum);border-color:var(--plum);background:color-mix(in srgb,var(--plum) 12%,transparent)}
+.vpanel h5{font:700 .68em var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--tomato);margin:1.1em 0 .25em}
+.vpanel p{font-size:.92em;margin:0 0 .3em;max-width:none;line-height:1.55}
+.vgo{display:inline-flex;align-items:center;gap:.4em;margin-top:1em;padding:.5em 1em;border-radius:10px;background:var(--tomato);color:#fff;font-weight:700;font-size:.88em;text-decoration:none}
+.vgo:hover{filter:brightness(1.08)} .vgo:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.vp-note{display:block;font-size:.75em;color:var(--muted);margin-top:.5em}
+@media(max-width:860px){
+  .vlive{grid-template-columns:minmax(0,1fr)}
+  .vlive .vpanel{order:-1;max-height:40vh;overflow-y:auto;z-index:2;padding:12px 14px}
+}
 /* folder tree snapshots */
 .tree{font:13px/1.9 var(--mono);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;overflow-x:auto;box-shadow:var(--shadow);margin:.8em 0 1.3em}
 .tree .t{display:grid;grid-template-columns:minmax(210px,max-content) 1fr;gap:4px 20px;align-items:baseline;border-radius:6px;padding:0 6px}
@@ -958,30 +983,30 @@ open runs/index.html</pre>
       <div class="hb-top"><p class="kicker">Handbook · 1</p></div>
       <h2>The folder map</h2>
       <p class="hb-intro">The repository looks big. Almost none of it is yours. Here is everything, colour-coded — and the only green folder is where you work.</p>
-      <!--vsc:hb-map--><figure class="vfig"><div class="vsc" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+      <!--vsc:hb-map--><div class="vlive"><div class="vsc" role="group" aria-label="VS Code Explorer view of workshop-agent-template">
 <div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
 <div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
-<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.cursor</span></div>
-<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.github</span></div>
-<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.venv</span></div>
-<div class="vr h-b" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">app</span><em class="vtag">the engine</em></div>
-<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">docs</span></div>
-<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">examples</span></div>
-<div class="vr h-g" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
-<div class="vr" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">runs</span><em class="vtag">auto-created</em></div>
-<div class="vr" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">scripts</span></div>
-<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">templates</span></div>
-<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">tests</span></div>
-<div class="vr h-p" style="--d:0"><span class="vc"></span><i class="fi env"></i><span class="vn">.env</span><em class="vtag">your secret</em></div>
-<div class="vr" style="--d:0"><span class="vc"></span><i class="fi env"></i><span class="vn">.env.example</span></div>
-<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi git"></i><span class="vn">.gitignore</span></div>
-<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">AGENTS.md</span></div>
-<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">CLAUDE.md</span></div>
-<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">GEMINI.md</span></div>
-<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi ini"></i><span class="vn">pytest.ini</span></div>
-<div class="vr" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
-<div class="vr" style="--d:0"><span class="vc"></span><i class="fi txt"></i><span class="vn">requirements.txt</span></div>
-</div><figcaption>This is what you see in VS Code's <b>Explorer</b> after you open the repository folder. Greyed-out names are files your tools hide or ignore.</figcaption></figure><!--/vsc:hb-map-->
+<div class="vr ig" style="--d:0" data-p=".cursor" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.cursor</span></div>
+<div class="vr ig" style="--d:0" data-p=".github" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.github</span></div>
+<div class="vr ig" style="--d:0" data-p=".venv" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.venv</span></div>
+<div class="vr h-b" style="--d:0" data-p="app" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">app</span><em class="vtag">the engine</em></div>
+<div class="vr h-y" style="--d:0" data-p="docs" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">docs</span></div>
+<div class="vr h-y" style="--d:0" data-p="examples" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">examples</span></div>
+<div class="vr h-g" style="--d:0" data-p="my_agent" data-k="d" role="button" tabindex="-1" aria-pressed="false" data-default><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
+<div class="vr" style="--d:0" data-p="runs" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">runs</span><em class="vtag">auto-created</em></div>
+<div class="vr" style="--d:0" data-p="scripts" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">scripts</span></div>
+<div class="vr h-y" style="--d:0" data-p="templates" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">templates</span></div>
+<div class="vr ig" style="--d:0" data-p="tests" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">tests</span></div>
+<div class="vr h-p" style="--d:0" data-p=".env" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi env"></i><span class="vn">.env</span><em class="vtag">your secret</em></div>
+<div class="vr" style="--d:0" data-p=".env.example" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi env"></i><span class="vn">.env.example</span></div>
+<div class="vr ig" style="--d:0" data-p=".gitignore" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi git"></i><span class="vn">.gitignore</span></div>
+<div class="vr ig" style="--d:0" data-p="AGENTS.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">AGENTS.md</span></div>
+<div class="vr ig" style="--d:0" data-p="CLAUDE.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">CLAUDE.md</span></div>
+<div class="vr ig" style="--d:0" data-p="GEMINI.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">GEMINI.md</span></div>
+<div class="vr ig" style="--d:0" data-p="pytest.ini" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi ini"></i><span class="vn">pytest.ini</span></div>
+<div class="vr" style="--d:0" data-p="README.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+<div class="vr" style="--d:0" data-p="requirements.txt" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi txt"></i><span class="vn">requirements.txt</span></div>
+</div><aside class="vpanel" aria-live="polite"></aside></div><p class="vcap">This is what VS Code's <b>Explorer</b> shows after you open the repository. <b>Click any file or folder</b> to see what it is and how you'll use it — then open it in the real repo. Greyed-out names are ignored by git or hidden from the agent.</p><!--/vsc:hb-map-->
       <div class="tree">
         <div class="t"><span class="n yours">my_agent/</span><span class="d"><b>YOUR AGENT — the only folder you edit.</b> Everything that makes this agent <em>your</em> agent lives here.</span></div>
         <div class="t"><span class="n key">.env</span><span class="d">Your secret API key. You create it once from <code>.env.example</code>. Never share it, never paste it into a chat.</span></div>
@@ -1171,31 +1196,31 @@ python -m app runs show latest  <span class="c"># the last run, as a tree</span>
       <div class="hb-top"><p class="kicker">Handbook · 6</p></div>
       <h2><code>my_agent/</code> — file by file</h2>
       <p class="hb-intro">Everything you edit, in one folder. An agent <em>is</em> a folder — you can run any folder with this shape.</p>
-      <!--vsc:hb-myagent--><figure class="vfig"><div class="vsc" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+      <!--vsc:hb-myagent--><div class="vlive"><div class="vsc" role="group" aria-label="VS Code Explorer view of workshop-agent-template">
 <div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
 <div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
-<div class="vr h-g" style="--d:0"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
-<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">prompts</span></div>
-<div class="vr h-star" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">agent.md</span><em class="vtag">the job description</em></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi json"></i><span class="vn">offline_script.json</span></div>
-<div class="vr" style="--d:2"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">skills</span></div>
-<div class="vr" style="--d:3"><span class="vc"></span><i class="fi md"></i><span class="vn">evidence-based-writing.md</span></div>
-<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">tools</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">_example_tool.py</span><em class="vtag">copy me</em></div>
-<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">workspace</span><em class="vtag">your input files</em></div>
-<div class="vr" style="--d:2"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">output</span><em class="vtag">deliverables land here</em></div>
-<div class="vr" style="--d:3"><span class="vc"></span><i class="fi git"></i><span class="vn">.gitkeep</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi csv"></i><span class="vn">inventory.csv</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">meeting_notes.md</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">project_overview.md</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi toml"></i><span class="vn">agent.toml</span><em class="vtag">tools: max 4</em></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">BLUEPRINT.md</span><em class="vtag">plan first</em></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">goal.md</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi toml"></i><span class="vn">guardrails.toml</span><em class="vtag">the rules</em></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.examples.json</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.json</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
-</div><figcaption><code>my_agent/</code> fully expanded, exactly as it appears out of the box. The annotated list below explains each entry.</figcaption></figure><!--/vsc:hb-myagent-->
+<div class="vr h-g" style="--d:0" data-p="my_agent" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
+<div class="vr" style="--d:1" data-p="my_agent/prompts" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">prompts</span></div>
+<div class="vr h-star" style="--d:2" data-p="my_agent/prompts/agent.md" data-k="f" role="button" tabindex="-1" aria-pressed="false" data-default><span class="vc"></span><i class="fi md"></i><span class="vn">agent.md</span><em class="vtag">the job description</em></div>
+<div class="vr" style="--d:2" data-p="my_agent/prompts/offline_script.json" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi json"></i><span class="vn">offline_script.json</span></div>
+<div class="vr" style="--d:2" data-p="my_agent/prompts/skills" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">skills</span></div>
+<div class="vr" style="--d:3" data-p="my_agent/prompts/skills/evidence-based-writing.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">evidence-based-writing.md</span></div>
+<div class="vr" style="--d:1" data-p="my_agent/tools" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">tools</span></div>
+<div class="vr" style="--d:2" data-p="my_agent/tools/_example_tool.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">_example_tool.py</span><em class="vtag">copy me</em></div>
+<div class="vr" style="--d:1" data-p="my_agent/workspace" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">workspace</span><em class="vtag">your input files</em></div>
+<div class="vr" style="--d:2" data-p="my_agent/workspace/output" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">output</span><em class="vtag">deliverables land here</em></div>
+<div class="vr" style="--d:3" data-p="my_agent/workspace/output/.gitkeep" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi git"></i><span class="vn">.gitkeep</span></div>
+<div class="vr" style="--d:2" data-p="my_agent/workspace/inventory.csv" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi csv"></i><span class="vn">inventory.csv</span></div>
+<div class="vr" style="--d:2" data-p="my_agent/workspace/meeting_notes.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">meeting_notes.md</span></div>
+<div class="vr" style="--d:2" data-p="my_agent/workspace/project_overview.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">project_overview.md</span></div>
+<div class="vr" style="--d:1" data-p="my_agent/agent.toml" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi toml"></i><span class="vn">agent.toml</span><em class="vtag">tools: max 4</em></div>
+<div class="vr" style="--d:1" data-p="my_agent/BLUEPRINT.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">BLUEPRINT.md</span><em class="vtag">plan first</em></div>
+<div class="vr" style="--d:1" data-p="my_agent/goal.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">goal.md</span></div>
+<div class="vr" style="--d:1" data-p="my_agent/guardrails.toml" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi toml"></i><span class="vn">guardrails.toml</span><em class="vtag">the rules</em></div>
+<div class="vr" style="--d:1" data-p="my_agent/mcp.examples.json" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.examples.json</span></div>
+<div class="vr" style="--d:1" data-p="my_agent/mcp.json" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.json</span></div>
+<div class="vr" style="--d:1" data-p="my_agent/README.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+</div><aside class="vpanel" aria-live="polite"></aside></div><p class="vcap"><code>my_agent/</code> fully expanded, as it appears out of the box. <b>Click any entry</b> for what it does and how to use it, with a link to the file in the repo.</p><!--/vsc:hb-myagent-->
       <div class="tree">
         <div class="t"><span class="n yours">my_agent/</span><span class="d">your agent</span></div>
         <div class="t"><span class="n">├─ <b class="star">prompts/agent.md</b></span><span class="d"><b>⭐ the job description.</b> Mission, numbered phases, rules, hand-over, answer format. Most of your time goes here.</span></div>
@@ -1288,44 +1313,44 @@ run_command = 12               <span class="c"># "retry at most twice" → keep 
       <div class="hb-top"><p class="kicker">Handbook · 7</p></div>
       <h2><code>app/</code> — the engine, module by module</h2>
       <p class="hb-intro">You never edit these. They are here so you know what is handling what — and because reading them is the fastest way to learn how agents really work.</p>
-      <!--vsc:hb-engine--><figure class="vfig"><div class="vsc" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+      <!--vsc:hb-engine--><div class="vlive"><div class="vsc" role="group" aria-label="VS Code Explorer view of workshop-agent-template">
 <div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
 <div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
-<div class="vr h-b" style="--d:0"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">app</span><em class="vtag">the engine — don't edit</em></div>
-<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">prompts</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">loader.py</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">system.md</span></div>
-<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">tools</span></div>
-<div class="vr" style="--d:2"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">builtin</span></div>
-<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
-<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">commands.py</span></div>
-<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">files.py</span></div>
-<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">skills.py</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">_sandbox.py</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">registry.py</span></div>
-<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">ui</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi html"></i><span class="vn">index.html</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi html"></i><span class="vn">runs_index.html</span></div>
-<div class="vr" style="--d:2"><span class="vc"></span><i class="fi html"></i><span class="vn">trace_viewer.html</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">__main__.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">a2a_client.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">a2a_server.py</span></div>
-<div class="vr h-star" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">agent_loop.py</span><em class="vtag">⭐ read me</em></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">config.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">doctor.py</span></div>
-<div class="vr h-star" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">guardrails.py</span><em class="vtag">⭐ read me</em></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">llm_client.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">mcp_client.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">mcp_server.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">runner.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">runs_cli.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">telemetry.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">trace.py</span></div>
-<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">workspace.py</span></div>
-</div><figcaption><code>app/</code> expanded. Two files are worth your time: <code>agent_loop.py</code> and <code>guardrails.py</code>.</figcaption></figure><!--/vsc:hb-engine-->
+<div class="vr h-b" style="--d:0" data-p="app" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">app</span><em class="vtag">the engine — don't edit</em></div>
+<div class="vr" style="--d:1" data-p="app/prompts" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">prompts</span></div>
+<div class="vr" style="--d:2" data-p="app/prompts/loader.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">loader.py</span></div>
+<div class="vr" style="--d:2" data-p="app/prompts/system.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">system.md</span></div>
+<div class="vr" style="--d:1" data-p="app/tools" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">tools</span></div>
+<div class="vr" style="--d:2" data-p="app/tools/builtin" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">builtin</span></div>
+<div class="vr" style="--d:3" data-p="app/tools/builtin/__init__.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
+<div class="vr" style="--d:3" data-p="app/tools/builtin/commands.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">commands.py</span></div>
+<div class="vr" style="--d:3" data-p="app/tools/builtin/files.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">files.py</span></div>
+<div class="vr" style="--d:3" data-p="app/tools/builtin/skills.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">skills.py</span></div>
+<div class="vr" style="--d:2" data-p="app/tools/__init__.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
+<div class="vr" style="--d:2" data-p="app/tools/_sandbox.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">_sandbox.py</span></div>
+<div class="vr" style="--d:2" data-p="app/tools/registry.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">registry.py</span></div>
+<div class="vr" style="--d:1" data-p="app/ui" data-k="d" role="button" tabindex="-1" aria-pressed="false"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">ui</span></div>
+<div class="vr" style="--d:2" data-p="app/ui/index.html" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi html"></i><span class="vn">index.html</span></div>
+<div class="vr" style="--d:2" data-p="app/ui/runs_index.html" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi html"></i><span class="vn">runs_index.html</span></div>
+<div class="vr" style="--d:2" data-p="app/ui/trace_viewer.html" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi html"></i><span class="vn">trace_viewer.html</span></div>
+<div class="vr" style="--d:1" data-p="app/__init__.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
+<div class="vr" style="--d:1" data-p="app/__main__.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">__main__.py</span></div>
+<div class="vr" style="--d:1" data-p="app/a2a_client.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">a2a_client.py</span></div>
+<div class="vr" style="--d:1" data-p="app/a2a_server.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">a2a_server.py</span></div>
+<div class="vr h-star" style="--d:1" data-p="app/agent_loop.py" data-k="f" role="button" tabindex="-1" aria-pressed="false" data-default><span class="vc"></span><i class="fi py"></i><span class="vn">agent_loop.py</span><em class="vtag">⭐ read me</em></div>
+<div class="vr" style="--d:1" data-p="app/config.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">config.py</span></div>
+<div class="vr" style="--d:1" data-p="app/doctor.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">doctor.py</span></div>
+<div class="vr h-star" style="--d:1" data-p="app/guardrails.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">guardrails.py</span><em class="vtag">⭐ read me</em></div>
+<div class="vr" style="--d:1" data-p="app/llm_client.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">llm_client.py</span></div>
+<div class="vr" style="--d:1" data-p="app/mcp_client.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">mcp_client.py</span></div>
+<div class="vr" style="--d:1" data-p="app/mcp_server.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">mcp_server.py</span></div>
+<div class="vr" style="--d:1" data-p="app/README.md" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+<div class="vr" style="--d:1" data-p="app/runner.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">runner.py</span></div>
+<div class="vr" style="--d:1" data-p="app/runs_cli.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">runs_cli.py</span></div>
+<div class="vr" style="--d:1" data-p="app/telemetry.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">telemetry.py</span></div>
+<div class="vr" style="--d:1" data-p="app/trace.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">trace.py</span></div>
+<div class="vr" style="--d:1" data-p="app/workspace.py" data-k="f" role="button" tabindex="-1" aria-pressed="false"><span class="vc"></span><i class="fi py"></i><span class="vn">workspace.py</span></div>
+</div><aside class="vpanel" aria-live="polite"></aside></div><p class="vcap"><code>app/</code> expanded. <b>Click any file</b> to see what it does. Two are worth your time: <code>agent_loop.py</code> and <code>guardrails.py</code>.</p><!--/vsc:hb-engine-->
       <div class="tree">
         <div class="t"><span class="n engine">app/</span><span class="d">the engine — generic, knows nothing about your problem</span></div>
         <div class="t"><span class="n">├─ __main__.py</span><span class="d"><b>1 · Entry points.</b> Turns <code>python -m app …</code> into a run; also <code>serve</code>, <code>doctor</code>, <code>runs</code></span></div>
@@ -1666,6 +1691,555 @@ curl -X POST http://localhost:8000/ \
 
   // ── handbook mode ───────────────────────────────────────────────────────────
   const hbLinks = $$("#hbNav a"), hbBody = $("#hbBody");
+
+  // ── live repo explorer (handbook): click a row -> what it is + a link to the real file ──
+  const REPO = "https://github.com/csqa-agentix/workshop-agent-template", BRANCH = "main";
+  const REPO_INFO = /*INFO*/{
+ "my_agent": {
+  "tag": "You edit this",
+  "tone": "g",
+  "what": "Your agent. The only folder you change — the prompt, tools, rules and input files all live inside it.",
+  "use": "Open it first. Fill in <code>BLUEPRINT.md<\/code>, then write <code>prompts/agent.md<\/code>. Everything else in the repo exists to run what you put here.",
+  "link": null
+ },
+ "app": {
+  "tag": "Don't edit · worth reading",
+  "tone": "b",
+  "what": "The engine that runs <em>any<\/em> agent folder: the loop, the model connection, tools, safety rules and tracing. It knows nothing about your problem on purpose.",
+  "use": "You never change it. Read <code>agent_loop.py<\/code> and <code>guardrails.py<\/code> if you want to learn how agents really work.",
+  "link": null
+ },
+ "docs": {
+  "tag": "Reference",
+  "tone": "y",
+  "what": "Deeper written guides: MCP, tracing, security, prompting tips, and how to map a problem statement onto the template.",
+  "use": "Open one when the handbook sends you here — for example <code>PROBLEM_TO_AGENT.md<\/code> when you're stuck on planning.",
+  "link": null
+ },
+ "examples": {
+  "tag": "Reference · read only",
+  "tone": "y",
+  "what": "Two small, finished dummy agents with exactly the same shape as <code>my_agent/<\/code>. They exist only to show how the pieces fit.",
+  "use": "Compare them file by file with yours. Do <b>not<\/b> start here and don't edit them.",
+  "link": null
+ },
+ "runs": {
+  "tag": "Created automatically",
+  "tone": "x",
+  "what": "The recorded story of every run: report, result, diff and a <code>trace.html<\/code> picture of what the agent thought and did.",
+  "use": "After a run, open <code>runs/index.html<\/code> to see all runs, or a single <code>trace.html<\/code> to replay one. Never edit it.",
+  "link": null
+ },
+ "scripts": {
+  "tag": "Setup helpers",
+  "tone": "x",
+  "what": "<code>setup.sh<\/code> (macOS/Linux) and <code>setup.ps1<\/code> (Windows): create the virtual environment, install requirements and copy <code>.env.example<\/code> to <code>.env<\/code>.",
+  "use": "Run the one for your computer exactly once, at the start.",
+  "link": null
+ },
+ "templates": {
+  "tag": "Reference · copy from",
+  "tone": "y",
+  "what": "Blank starting files: <code>agent.blank.md<\/code> for a job description and <code>skill.blank.md<\/code> for a reusable know-how file.",
+  "use": "Copy a blank into <code>my_agent/prompts/<\/code> when you start writing, then fill it in.",
+  "link": null
+ },
+ "tests": {
+  "tag": "Automatic checks",
+  "tone": "x",
+  "what": "The automated tests that prove the engine, the guardrails and the security rules work.",
+  "use": "You don't edit these. Run <code>pytest<\/code> if you want to see the safety rules being proven.",
+  "link": null
+ },
+ ".cursor": {
+  "tag": "Ignore",
+  "tone": "x",
+  "what": "A hint file for the Cursor editor that points it at <code>AGENTS.md<\/code>.",
+  "use": "Nothing to do — it works by itself.",
+  "link": null
+ },
+ ".github": {
+  "tag": "Ignore",
+  "tone": "x",
+  "what": "A hint file for GitHub Copilot that points it at <code>AGENTS.md<\/code>.",
+  "use": "Nothing to do — it works by itself.",
+  "link": null
+ },
+ ".venv": {
+  "tag": "Created by setup · not in the repo",
+  "tone": "x",
+  "what": "Python's private toolbox for this project, created on your computer by the setup script. It is not stored in the repository.",
+  "use": "Ignore it. If something breaks mysteriously, re-run the setup script.",
+  "link": ""
+ },
+ ".env": {
+  "tag": "Your secret · not in the repo",
+  "tone": "p",
+  "what": "Your secret API key. You create it once by copying <code>.env.example<\/code>. It is deliberately not in the repository.",
+  "use": "Never share it, never commit it, never paste it into a chat. The link opens <code>.env.example<\/code>, the safe template you copy from.",
+  "link": ".env.example"
+ },
+ ".env.example": {
+  "tag": "Template for your secret",
+  "tone": "p",
+  "what": "The safe, committed template for <code>.env<\/code>, with placeholders instead of a real key.",
+  "use": "Copy it to <code>.env<\/code> (the setup script does this for you) and paste your key there.",
+  "link": null
+ },
+ ".gitignore": {
+  "tag": "Ignore",
+  "tone": "x",
+  "what": "Tells git which files to leave out — including <code>.env<\/code>, <code>.venv/<\/code> and everything inside <code>runs/<\/code>.",
+  "use": "Nothing to do. It is why your secret key can't be committed by accident.",
+  "link": null
+ },
+ "AGENTS.md": {
+  "tag": "Ignore · for AI tools",
+  "tone": "x",
+  "what": "Instructions that let any AI coding tool understand this repo: the layout, where edits belong (only <code>my_agent/<\/code>) and the rules.",
+  "use": "You don't need to read it. Your AI coding tool reads it by itself.",
+  "link": null
+ },
+ "CLAUDE.md": {
+  "tag": "Ignore · for AI tools",
+  "tone": "x",
+  "what": "The same repo instructions, for Claude Code.",
+  "use": "Nothing to do — it points the tool at the shared rules.",
+  "link": null
+ },
+ "GEMINI.md": {
+  "tag": "Ignore · for AI tools",
+  "tone": "x",
+  "what": "The same repo instructions, for Gemini tools.",
+  "use": "Nothing to do — it points the tool at the shared rules.",
+  "link": null
+ },
+ "pytest.ini": {
+  "tag": "Ignore",
+  "tone": "x",
+  "what": "Tells <code>pytest<\/code> where the tests live.",
+  "use": "Nothing to do.",
+  "link": null
+ },
+ "README.md": {
+  "tag": "Start here",
+  "tone": "y",
+  "what": "The project's front page: what the template is, how to set it up and run it.",
+  "use": "Skim it once. It's the shortest path from clone to first run.",
+  "link": null
+ },
+ "requirements.txt": {
+  "tag": "Ignore",
+  "tone": "x",
+  "what": "The list of Python packages the project needs.",
+  "use": "The setup script installs these for you.",
+  "link": null
+ },
+ "my_agent/prompts": {
+  "tag": "You edit this",
+  "tone": "g",
+  "what": "The agent's brain, written in plain English: the job description, reusable skills and a scripted stand-in model.",
+  "use": "Most of your time is spent here, in <code>agent.md<\/code>.",
+  "link": null
+ },
+ "my_agent/prompts/agent.md": {
+  "tag": "⭐ Most of your time",
+  "tone": "g",
+  "what": "<b>The job description.<\/b> Mission, numbered phases, rules, hand-over and answer format. The agent's behaviour is this text — not code.",
+  "use": "Replace the placeholder with your own agent. Start from <code>templates/agent.blank.md<\/code>; use <code>BLUEPRINT.md<\/code> to plan it first.",
+  "link": null
+ },
+ "my_agent/prompts/offline_script.json": {
+  "tag": "Optional",
+  "tone": "g",
+  "what": "A scripted stand-in for the model, so <code>--offline<\/code> can demo your agent with no API key.",
+  "use": "Leave it alone until you want a key-free demo of your own agent; then script the steps you expect.",
+  "link": null
+ },
+ "my_agent/prompts/skills": {
+  "tag": "You edit this",
+  "tone": "g",
+  "what": "Reusable know-how files the agent can load when needed: decision tables, checklists, report layouts.",
+  "use": "Add a file here when the prompt is getting long and part of it is reference material.",
+  "link": null
+ },
+ "my_agent/prompts/skills/evidence-based-writing.md": {
+  "tag": "Example skill",
+  "tone": "g",
+  "what": "A sample skill: how to write claims that point back to evidence in the files.",
+  "use": "Read it as a pattern. Copy <code>templates/skill.blank.md<\/code> to make your own.",
+  "link": null
+ },
+ "my_agent/tools": {
+  "tag": "Only if needed",
+  "tone": "g",
+  "what": "Your own Python tools — extra abilities the built-in ones don't cover.",
+  "use": "Most agents don't need any. Copy <code>_example_tool.py<\/code> when you do.",
+  "link": null
+ },
+ "my_agent/tools/_example_tool.py": {
+  "tag": "Copy me",
+  "tone": "g",
+  "what": "A tiny, working example of a custom tool: a Python function marked with <code>@tool<\/code>. Files starting with <code>_<\/code> are switched off.",
+  "use": "Copy it, drop the underscore, change the function, then add its name to <code>agent.toml<\/code>.",
+  "link": null
+ },
+ "my_agent/workspace": {
+  "tag": "You put files here",
+  "tone": "g",
+  "what": "Your input files — the <b>only<\/b> folder the agent's file tools can see. It works on a <em>copy<\/em>, so your originals are safe.",
+  "use": "Drop in the sample files your agent should work on. Deliverables are written to <code>output/<\/code>.",
+  "link": null
+ },
+ "my_agent/workspace/output": {
+  "tag": "Deliverables land here",
+  "tone": "g",
+  "what": "Where the agent writes what it produces. By default it's the only place it is allowed to write (see <code>guardrails.toml<\/code>).",
+  "use": "Look here after a run for the briefing, report or changed files.",
+  "link": null
+ },
+ "my_agent/workspace/output/.gitkeep": {
+  "tag": "Ignore",
+  "tone": "x",
+  "what": "An empty marker file so git keeps the otherwise-empty <code>output/<\/code> folder.",
+  "use": "Nothing to do.",
+  "link": null
+ },
+ "my_agent/workspace/inventory.csv": {
+  "tag": "Sample input",
+  "tone": "g",
+  "what": "A small made-up table (item, owner, status, due) used by the placeholder agent.",
+  "use": "Replace it with your own sample data.",
+  "link": null
+ },
+ "my_agent/workspace/meeting_notes.md": {
+  "tag": "Sample input",
+  "tone": "g",
+  "what": "Made-up meeting notes used by the placeholder agent.",
+  "use": "Replace it with your own sample data.",
+  "link": null
+ },
+ "my_agent/workspace/project_overview.md": {
+  "tag": "Sample input",
+  "tone": "g",
+  "what": "A made-up project overview used by the placeholder agent.",
+  "use": "Replace it with your own sample data.",
+  "link": null
+ },
+ "my_agent/agent.toml": {
+  "tag": "Once, early",
+  "tone": "g",
+  "what": "Name, description and example requests — and <b>which tools the agent may use<\/b> (maximum 4).",
+  "use": "Set the name, then list only the tools the job truly needs. Fewer tools means a more focused agent.",
+  "link": null
+ },
+ "my_agent/BLUEPRINT.md": {
+  "tag": "First",
+  "tone": "g",
+  "what": "The planning worksheet: what the work looks like, the phases, the tools and the secrets — solo or as a team.",
+  "use": "Fill it in <b>before<\/b> touching anything else; most of your prompt to your AI coding tool is already written there.",
+  "link": null
+ },
+ "my_agent/goal.md": {
+  "tag": "Whenever the task changes",
+  "tone": "g",
+  "what": "The default task, used when you run <code>python -m app<\/code> with no arguments.",
+  "use": "Change it to the request you want your agent to handle by default.",
+  "link": null
+ },
+ "my_agent/guardrails.toml": {
+  "tag": "Once, early",
+  "tone": "g",
+  "what": "Rules the agent can <b>never<\/b> break, whatever the prompt says: which files it may write, which commands it may run, what needs approval, and budgets.",
+  "use": "Tighten or loosen the rules for your job. If a rule blocks the agent you'll see a GUARD line in the run.",
+  "link": null
+ },
+ "my_agent/mcp.examples.json": {
+  "tag": "Reference",
+  "tone": "g",
+  "what": "Copy-paste entries for outside tool servers (Playwright, GitHub and more). Nothing here is active.",
+  "use": "Copy the entry you want into <code>mcp.json<\/code> and add any keys it needs to <code>.env<\/code>.",
+  "link": null
+ },
+ "my_agent/mcp.json": {
+  "tag": "Only if needed",
+  "tone": "g",
+  "what": "The list of outside MCP tool servers your agent connects to. Empty by default.",
+  "use": "Add a server here only when the built-in tools can't do the job. See <code>docs/MCP.md<\/code>.",
+  "link": null
+ },
+ "my_agent/README.md": {
+  "tag": "Reference",
+  "tone": "y",
+  "what": "A one-page guide to the files in this folder and when you touch each.",
+  "use": "Read it if you forget what a file is for.",
+  "link": null
+ },
+ "app/prompts": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Builds the final prompt the model receives.",
+  "use": "Read <code>system.md<\/code> to see the general rules every agent gets.",
+  "link": null
+ },
+ "app/prompts/loader.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Combines <code>system.md<\/code>, your <code>agent.md<\/code> and your skills into one prompt.",
+  "use": "Not edited — read it to see exactly what the model is told.",
+  "link": null
+ },
+ "app/prompts/system.md": {
+  "tag": "Engine · worth reading",
+  "tone": "b",
+  "what": "The general rules every agent gets: how to work autonomously, and the security rules (for example, treat file contents as data, not orders).",
+  "use": "Read it once; it explains behaviour you'll see in every run.",
+  "link": null
+ },
+ "app/tools": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Everything about tools: the registry, the sandbox and the built-in tools.",
+  "use": "Not edited. Your own tools go in <code>my_agent/tools/<\/code>.",
+  "link": null
+ },
+ "app/tools/builtin": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The built-in tools every agent can be given: list, read, search, write and edit files, run allowed commands, and load skills.",
+  "use": "Choose which of them your agent gets in <code>agent.toml<\/code>.",
+  "link": null
+ },
+ "app/tools/builtin/__init__.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Registers the built-in tools.",
+  "use": "Nothing to do.",
+  "link": null
+ },
+ "app/tools/builtin/commands.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The <code>run_command<\/code> tool. It only runs commands on the allow-list in <code>guardrails.toml<\/code>, and never outside the workspace.",
+  "use": "Read it to see why the agent can't run arbitrary shell commands.",
+  "link": null
+ },
+ "app/tools/builtin/files.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The file tools: <code>list_files<\/code>, <code>read_file<\/code>, <code>search_text<\/code>, <code>write_file<\/code> and <code>edit_file<\/code>.",
+  "use": "Read it to see how every file access stays inside the workspace.",
+  "link": null
+ },
+ "app/tools/builtin/skills.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The <code>load_skill<\/code> tool, which pulls a skill file from <code>prompts/skills/<\/code> into the conversation when the agent asks for it.",
+  "use": "Nothing to do — it's why long know-how can live in skills, not the main prompt.",
+  "link": null
+ },
+ "app/tools/__init__.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Marks the tools folder as a Python package.",
+  "use": "Nothing to do.",
+  "link": null
+ },
+ "app/tools/_sandbox.py": {
+  "tag": "Engine · security",
+  "tone": "b",
+  "what": "Keeps every file tool inside the workspace: resolves paths (including symlinks) and hides credential files like <code>.env<\/code> and <code>*.pem<\/code>.",
+  "use": "Read it to see how path tricks like <code>../../etc/passwd<\/code> are stopped.",
+  "link": null
+ },
+ "app/tools/registry.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Turns a Python function marked <code>@tool<\/code> into something the model can call.",
+  "use": "Read it if you want to know what your own tools need to look like.",
+  "link": null
+ },
+ "app/ui": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The web pages: the app at <code>localhost:8000<\/code>, the runs list and the trace viewer.",
+  "use": "Not edited. Start the app with <code>python -m app serve<\/code>.",
+  "link": null
+ },
+ "app/ui/index.html": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The web page you see at <code>localhost:8000<\/code> — plain HTML, no framework.",
+  "use": "Nothing to do. Open it by running <code>python -m app serve<\/code>.",
+  "link": null
+ },
+ "app/ui/runs_index.html": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The template for <code>runs/index.html<\/code>, the list of every run.",
+  "use": "Nothing to do.",
+  "link": null
+ },
+ "app/ui/trace_viewer.html": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The template for each run's <code>trace.html<\/code> — the picture of what happened.",
+  "use": "Nothing to do. Open a run's <code>trace.html<\/code> to use it.",
+  "link": null
+ },
+ "app/__init__.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Marks <code>app<\/code> as a Python package.",
+  "use": "Nothing to do.",
+  "link": null
+ },
+ "app/__main__.py": {
+  "tag": "Engine · entry point",
+  "tone": "b",
+  "what": "<b>Module 1 · Entry points.<\/b> Turns <code>python -m app …<\/code> into a run; also <code>serve<\/code>, <code>doctor<\/code> and <code>runs<\/code>.",
+  "use": "This is what runs when you type <code>python -m app<\/code>.",
+  "link": null
+ },
+ "app/a2a_client.py": {
+  "tag": "Engine · example",
+  "tone": "b",
+  "what": "The smallest possible “call an agent by URL” program, using the A2A standard.",
+  "use": "Copy it into your own code to call your agent from another program.",
+  "link": null
+ },
+ "app/a2a_server.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "<b>Module 11 · A2A.<\/b> Serves your agent at a URL with an Agent Card, so other programs can call it.",
+  "use": "Read the header of the file for a clear explanation of A2A.",
+  "link": null
+ },
+ "app/agent_loop.py": {
+  "tag": "⭐ Read this one",
+  "tone": "b",
+  "what": "<b>Module 4 · The loop.<\/b> Tool calling, tool chaining, parallel calls and stopping — the heart of every agent, in one short file.",
+  "use": "Read it end to end. Once you understand think → act → observe, the rest is plumbing.",
+  "link": null
+ },
+ "app/config.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "<b>Module 2 · Settings.<\/b> Reads <code>.env<\/code>, <code>agent.toml<\/code> and <code>guardrails.toml<\/code> and decides which agent folder is active.",
+  "use": "Read it if you wonder where a setting comes from.",
+  "link": null
+ },
+ "app/doctor.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "<b>Module 12 · Health check.<\/b> Verifies your setup and explains how to fix every failure.",
+  "use": "Run <code>python -m app doctor<\/code> whenever something feels off — add <code>--live<\/code> to test your key too.",
+  "link": null
+ },
+ "app/guardrails.py": {
+  "tag": "⭐ Read this one",
+  "tone": "b",
+  "what": "<b>Module 8 · Rules.<\/b> Applies <code>guardrails.toml<\/code>, blanks out secrets and flags hidden instructions in tool output.",
+  "use": "Read it to see how an agent is kept safe by code, not by asking nicely.",
+  "link": null
+ },
+ "app/llm_client.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "<b>Module 3 · Model client.<\/b> The only file that talks to the model: rate-limit waiting, retries and clear errors.",
+  "use": "Read it if you want to point the agent at a different model provider.",
+  "link": null
+ },
+ "app/mcp_client.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Connects outside MCP servers (local or remote) and filters them to your <code>include<\/code> list.",
+  "use": "Nothing to edit — you configure it in <code>my_agent/mcp.json<\/code>.",
+  "link": null
+ },
+ "app/mcp_server.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "<b>Module 7 · MCP.<\/b> Serves your tools as a real MCP server.",
+  "use": "Read it to see what “a tool server” really is.",
+  "link": null
+ },
+ "app/README.md": {
+  "tag": "Reference",
+  "tone": "y",
+  "what": "A map of every engine file and what it does.",
+  "use": "Read it before you open the code.",
+  "link": null
+ },
+ "app/runner.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "<b>Module 10 · One complete run.<\/b> Goal in → workspace copy → tools → loop → report, result and diff out. The CLI, the web page and A2A all call this one function.",
+  "use": "Read it to see the whole life of a run in one place.",
+  "link": null
+ },
+ "app/runs_cli.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "The <code>python -m app runs<\/code> commands for listing and showing past runs.",
+  "use": "Try <code>python -m app runs show latest<\/code>.",
+  "link": null
+ },
+ "app/telemetry.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "<b>Module 9 · Tracing.<\/b> Records every run (crash-safe) and writes <code>trace.html<\/code>.",
+  "use": "Read it to see what gets recorded. Output lands in <code>runs/<\/code>.",
+  "link": null
+ },
+ "app/trace.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Prints the live THINK / ACT / OBSERVE lines and writes <code>report.md<\/code>.",
+  "use": "Nothing to do — it's what you watch scroll by during a run.",
+  "link": null
+ },
+ "app/workspace.py": {
+  "tag": "Engine",
+  "tone": "b",
+  "what": "Copies your workspace for each run and produces the diff of what changed.",
+  "use": "Read it to see why the agent can never damage your original files.",
+  "link": null
+ }
+}/*/INFO*/;
+  $$(".vlive").forEach(box => {
+    const rows = $$(".vr[data-p]", box), panel = $(".vpanel", box);
+    const show = (row, focus) => {
+      const p = row.dataset.p, isDir = row.dataset.k === "d", info = REPO_INFO[p];
+      rows.forEach(r => { const on = r === row; r.classList.toggle("sel", on); r.setAttribute("aria-pressed", on); r.tabIndex = on ? 0 : -1; });
+      if (focus) row.focus({ preventScroll: true });
+      const target = info && info.link !== null ? info.link : p;      // null = same path; "" = nothing to open
+      const url = target ? `${REPO}/${isDir && target === p ? "tree" : "blob"}/${BRANCH}/${encodeURI(target)}` : "";
+      const tone = info ? info.tone : "x";
+      panel.innerHTML = "";
+      const add = (tag, cls, html) => { const el = document.createElement(tag); if (cls) el.className = cls; el.innerHTML = html; panel.appendChild(el); return el; };
+      add("div", "vp-path", "").textContent = p + (isDir ? "/" : "");
+      add("span", "vp-tag t-" + tone, "").textContent = info ? info.tag : "In the repo";
+      add("h5", "", "What it is");
+      add("p", "", info ? info.what : "A file in the template repository.");
+      add("h5", "", "How you'll use it");
+      add("p", "", info ? info.use : "Open it on GitHub to read it.");
+      if (url) {
+        const a = add("a", "vgo", "View on GitHub ↗"); a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+        add("span", "vp-note", target !== p ? "Opens <code>" + target + "</code> in the template repo." : "Opens this " + (isDir ? "folder" : "file") + " in the template repo (<code>" + BRANCH + "</code> branch).");
+      } else add("span", "vp-note", "This one lives only on your computer, so there is nothing to open on GitHub.");
+    };
+    rows.forEach((r, i) => {
+      r.addEventListener("click", () => show(r));
+      r.addEventListener("keydown", e => {
+        const k = e.key;
+        if (k === "Enter" || k === " ") { e.preventDefault(); e.stopPropagation(); show(r); }
+        else if (k === "ArrowDown" || k === "ArrowUp") { e.preventDefault(); e.stopPropagation(); const n = rows[i + (k === "ArrowDown" ? 1 : -1)]; if (n) show(n, true); }
+      });
+    });
+    show(box.querySelector(".vr[data-default]") || rows[0]);
+  });
+
   const inHandbook = () => document.body.classList.contains("handbook");
   // Live positions, not offsetTop: the sections' offsetParent is the fixed grid, not the scroller.
   const distanceTo = sec => sec.getBoundingClientRect().top - hbBody.getBoundingClientRect().top;

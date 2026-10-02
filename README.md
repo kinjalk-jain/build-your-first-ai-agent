@@ -23,6 +23,8 @@ Open `index.html` in a browser (or the hosted URL) and press **F** for full scre
 | `F` | full screen |
 | `?` | help |
 
+In the handbook, the folder views look like VS Code's Explorer and are clickable: pick any file or folder to see what it is, how you'll use it, and a **View on GitHub** link to it in the [template repo](https://github.com/csqa-agentix/workshop-agent-template) (`main` branch). The repo address is set once, in the `REPO` constant in `index.html`.
+
 Deep links work for both parts: `…/#i7-mcp` opens a specific slide, `…/#hb-mcp` opens a handbook section. Swipe works on phones (where the handbook's contents live behind the **Menu** button).
 
 ## Deploy to Vercel (free)

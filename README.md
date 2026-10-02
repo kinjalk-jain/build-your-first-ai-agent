@@ -23,7 +23,7 @@ Open `index.html` in a browser (or the hosted URL) and press **F** for full scre
 | `F` | full screen |
 | `?` | help |
 
-Links like `…/#i7-mcp` open a specific slide. Swipe works on phones.
+Deep links work for both parts: `…/#i7-mcp` opens a specific slide, `…/#hb-mcp` opens a handbook section. Swipe works on phones (where the handbook's contents live behind the **Menu** button).
 
 ## Deploy to Vercel (free)
 **Option A — from GitHub (recommended: every `git push` redeploys)**

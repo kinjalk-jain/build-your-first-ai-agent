@@ -100,6 +100,44 @@ body.handbook .progress{display:none}
 .hb-intro{font-size:1.1em;color:var(--muted);max-width:60ch;margin-bottom:1.4em}
 .hb-top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:.2em}
 .hb-top .kicker{margin:0}
+/* VS Code explorer snapshots */
+.vsc{--vbg:#252526;--vfg:#cccccc;font:13px/1 var(--sans);background:var(--vbg);color:var(--vfg);border:1px solid #3c3c3c;border-radius:10px;box-shadow:var(--shadow);overflow:hidden;width:100%;max-width:440px;user-select:none}
+.vsc-h{display:flex;justify-content:space-between;padding:9px 14px 7px;font-size:11px;letter-spacing:.08em;color:#bbbbbb}
+.vsc-dots{letter-spacing:2px}
+.vsc-t{padding:4px 8px 5px;font-size:11px;font-weight:700;letter-spacing:.04em;color:#e7e7e7;background:#2d2d2e;border-top:1px solid #3c3c3c;border-bottom:1px solid #3c3c3c}
+.vsc-ch{display:inline-block;width:14px;opacity:.8}
+.vr{display:flex;align-items:center;gap:5px;height:24px;padding:0 10px 0 calc(8px + var(--d)*14px);white-space:nowrap;border-left:2px solid transparent}
+.vr:hover{background:#2a2d2e}
+.vc{width:11px;flex:none;text-align:center;font-size:12px;opacity:.75}
+.vn{overflow:hidden;text-overflow:ellipsis;font-size:13px}
+.fo{width:16px;height:16px;flex:none}
+.fi{flex:none;width:16px;height:16px;border-radius:3px;display:inline-grid;place-items:center;font:700 8px/1 var(--mono);font-style:normal;color:#1e1e1e;background:#8a8a8a}
+.fi::before{content:"·"}
+.fi.py{background:#4b8bbe}.fi.py::before{content:"py";color:#ffe873}
+.fi.md{background:none;color:#519aba;font-size:11px}.fi.md::before{content:"ⓜ"}
+.fi.toml{background:#9c4221;color:#fff}.fi.toml::before{content:"T";color:#fff}
+.fi.json{background:none;color:#cbcb41;font-size:10px}.fi.json::before{content:"{}"}
+.fi.env,.fi.ini{background:none;color:#e5c07b;font-size:12px}.fi.env::before,.fi.ini::before{content:"⚙"}
+.fi.git{background:none;color:#f1502f;font-size:11px}.fi.git::before{content:"◆"}
+.fi.csv{background:none;color:#89d185;font-size:11px}.fi.csv::before{content:"▦"}
+.fi.html{background:none;color:#e44d26;font-size:10px}.fi.html::before{content:"<>"}
+.fi.txt,.fi.ps1,.fi.sh,.fi.gitkeep{background:none;color:#a0a0a0;font-size:11px}.fi.txt::before,.fi.ps1::before,.fi.sh::before{content:"≡"}
+.vtag{margin-left:auto;padding-left:10px;font:700 9.5px/1 var(--sans);font-style:normal;letter-spacing:.06em;text-transform:uppercase;opacity:.95}
+.vr.ig .vn,.vr.ig .fo,.vr.ig .fi{opacity:.5}
+.h-g{background:rgba(79,179,122,.16);border-left-color:#4fb37a}.h-g .vn{color:#7fe0a8;font-weight:700}.h-g .vtag{color:#7fe0a8}
+.h-b{background:rgba(122,162,255,.12);border-left-color:#7aa2ff}.h-b .vn{color:#9bb8ff}.h-b .vtag{color:#9bb8ff}
+.h-y{border-left-color:#f7c45a}.h-y .vn{color:#f7d78d}
+.h-p{background:rgba(185,140,240,.14);border-left-color:#b98cf0}.h-p .vn{color:#d3b3fa;font-weight:700}.h-p .vtag{color:#d3b3fa}
+.h-star .vn{color:#ff9a85;font-weight:700}.h-star .vtag{color:#ff9a85}
+.vr:not([class*="h-"]) .vtag{color:#9a9a9a}
+.vfig{margin:.8em 0 1.3em;max-width:440px}
+.vfig figcaption{font-size:.82em;color:var(--muted);margin-top:.6em;line-height:1.5}
+.vsc-slide{max-width:360px}
+.inside-grid{display:grid;grid-template-columns:1fr minmax(250px,330px);gap:clamp(14px,2.4vw,32px);align-items:start}
+@media(max-width:860px){.inside-grid{grid-template-columns:1fr}}
+.mapgrid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:clamp(14px,2.4vw,36px);align-items:start;margin-top:.8em}
+.mapgrid .zone{padding:10px 16px}.mapgrid .zones{display:grid;gap:10px}
+@media(max-width:860px){.mapgrid{grid-template-columns:1fr}}
 /* folder tree snapshots */
 .tree{font:13px/1.9 var(--mono);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;overflow-x:auto;box-shadow:var(--shadow);margin:.8em 0 1.3em}
 .tree .t{display:grid;grid-template-columns:minmax(210px,max-content) 1fr;gap:4px 20px;align-items:baseline;border-radius:6px;padding:0 6px}
@@ -224,6 +262,10 @@ body.handbook .progress{display:none}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-fold" viewBox="0 0 16 16"><path d="M1.5 3.5h4.2l1.3 1.5h7.5v7.5a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1z" fill="#c09553"/></symbol>
+<symbol id="i-fopen" viewBox="0 0 16 16"><path d="M1.5 3.5h4.2l1.3 1.5h7.5v1.5H4l-2.5 6.5z" fill="#c09553"/><path d="M4 6.5h11.5l-2.5 6.5H1.5z" fill="#dcb67a"/></symbol>
+</defs></svg>
 <div class="progress" id="progress"></div>
 
 <div class="deck" id="deck">
@@ -337,13 +379,39 @@ body.handbook .progress{display:none}
   <div class="wrap">
     <p class="kicker">The most important slide</p>
     <h2 data-step>Where do I start? <span style="color:var(--basil)">One folder.</span></h2>
-    <div class="grid g2" style="margin-top:.8em">
-      <div class="zone z-green glow" data-step><b>🟢 my_agent/</b><small><strong>YOUR AGENT. Start here.</strong> The only folder you edit — the prompt, tools, rules and input files all live inside.</small></div>
-      <div class="zone z-key" data-step><b>🔑 .env</b><small>Your secret API key. You make it once from <code>.env.example</code>. Never share it, never paste it into a chat.</small></div>
-      <div class="zone z-blue" data-step><b>🔵 app/</b><small>The engine that runs <em>any</em> agent. Don't edit — but it's worth reading to learn how agents work.</small></div>
-      <div class="zone z-yellow" data-step><b>🟡 examples/ · templates/ · docs/</b><small>Dummy examples for reading, blank files to copy, deeper guides. <em>Not</em> your starting point.</small></div>
-      <div class="zone" data-step><b>⚪ runs/</b><small>The recorded story of every run, created automatically. Open <code>runs/index.html</code>.</small></div>
-      <div class="zone z-gray" data-step><b>⚫ AGENTS.md · CLAUDE.md · GEMINI.md · .github/ · .cursor/ · .venv/</b><small>Hints for AI coding tools, and Python's private toolbox. Ignore them.</small></div>
+    <div class="mapgrid">
+      <div data-step><!--vsc:map-slide--><div class="vsc vsc-slide" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+<div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
+<div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.cursor</span></div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.github</span></div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.venv</span></div>
+<div class="vr h-b" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">app</span><em class="vtag">the engine</em></div>
+<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">docs</span></div>
+<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">examples</span></div>
+<div class="vr h-g" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
+<div class="vr" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">runs</span><em class="vtag">auto-created</em></div>
+<div class="vr" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">scripts</span></div>
+<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">templates</span></div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">tests</span></div>
+<div class="vr h-p" style="--d:0"><span class="vc"></span><i class="fi env"></i><span class="vn">.env</span><em class="vtag">your secret</em></div>
+<div class="vr" style="--d:0"><span class="vc"></span><i class="fi env"></i><span class="vn">.env.example</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi git"></i><span class="vn">.gitignore</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">AGENTS.md</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">CLAUDE.md</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">GEMINI.md</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi ini"></i><span class="vn">pytest.ini</span></div>
+<div class="vr" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+<div class="vr" style="--d:0"><span class="vc"></span><i class="fi txt"></i><span class="vn">requirements.txt</span></div>
+</div><!--/vsc:map-slide--></div>
+      <div class="zones">
+        <div class="zone z-green glow" data-step><b>🟢 my_agent/</b><small><strong>YOUR AGENT. Start here.</strong> The only folder you edit — the prompt, tools, rules and input files all live inside.</small></div>
+        <div class="zone z-key" data-step><b>🔑 .env</b><small>Your secret API key. You make it once from <code>.env.example</code>. Never share it, never paste it into a chat.</small></div>
+        <div class="zone z-blue" data-step><b>🔵 app/</b><small>The engine that runs <em>any</em> agent. Don't edit — but it's worth reading to learn how agents work.</small></div>
+        <div class="zone z-yellow" data-step><b>🟡 examples/ · templates/ · docs/</b><small>Dummy examples for reading, blank files to copy, deeper guides. <em>Not</em> your starting point.</small></div>
+        <div class="zone" data-step><b>⚪ runs/</b><small>The recorded story of every run, created automatically. Open <code>runs/index.html</code>.</small></div>
+        <div class="zone z-gray" data-step><b>⚫ AGENTS.md · CLAUDE.md · GEMINI.md · .github/ · .cursor/ · .venv/</b><small>Hints for AI coding tools, and Python's private toolbox. Ignore them.</small></div>
+      </div>
     </div>
   </div>
 </section>
@@ -352,17 +420,37 @@ body.handbook .progress{display:none}
   <div class="wrap">
     <p class="kicker">Your agent is just a folder</p>
     <h2 data-step>Inside <code style="font-size:.8em">my_agent/</code></h2>
-    <div class="card" data-step style="padding:6px 10px"><table>
-      <tr><th>File</th><th>What it is</th><th>When</th></tr>
-      <tr><td class="mono">BLUEPRINT.md</td><td>Planning worksheet — solo or with a team</td><td><span class="badge yes">First</span></td></tr>
-      <tr><td class="mono">prompts/agent.md</td><td>The job description: mission, <b>phases</b>, rules, hand-over, answer format</td><td><span class="badge yes">Most of your time</span></td></tr>
-      <tr><td class="mono">prompts/skills/</td><td>Reusable know-how: tables, checklists, layouts</td><td><span class="badge maybe">As needed</span></td></tr>
-      <tr><td class="mono">agent.toml</td><td>Name & business card, and <b>which tools</b> (max 4)</td><td><span class="badge yes">Once, early</span></td></tr>
-      <tr><td class="mono">guardrails.toml</td><td>Rules it can never break: which files, which commands, what needs approval</td><td><span class="badge yes">Once, early</span></td></tr>
-      <tr><td class="mono">workspace/</td><td>Your input files (it works on a <em>copy</em>)</td><td><span class="badge yes">Put samples here</span></td></tr>
-      <tr><td class="mono">tools/</td><td>Your own Python tools</td><td><span class="badge maybe">Only if needed</span></td></tr>
-      <tr><td class="mono">mcp.json</td><td>External MCP servers (Playwright, GitHub, your own)</td><td><span class="badge maybe">Only if needed</span></td></tr>
-    </table></div>
+    <div class="inside-grid">
+      <div class="card" data-step style="padding:6px 10px"><table>
+        <tr><th>File</th><th>What it is</th><th>When</th></tr>
+        <tr><td class="mono">BLUEPRINT.md</td><td>Planning worksheet — solo or with a team</td><td><span class="badge yes">First</span></td></tr>
+        <tr><td class="mono">prompts/agent.md</td><td>The job description: mission, <b>phases</b>, rules, hand-over, answer format</td><td><span class="badge yes">Most of your time</span></td></tr>
+        <tr><td class="mono">prompts/skills/</td><td>Reusable know-how: tables, checklists, layouts</td><td><span class="badge maybe">As needed</span></td></tr>
+        <tr><td class="mono">agent.toml</td><td>Name & business card, and <b>which tools</b> (max 4)</td><td><span class="badge yes">Once, early</span></td></tr>
+        <tr><td class="mono">guardrails.toml</td><td>Rules it can never break: which files, which commands, what needs approval</td><td><span class="badge yes">Once, early</span></td></tr>
+        <tr><td class="mono">workspace/</td><td>Your input files (it works on a <em>copy</em>)</td><td><span class="badge yes">Put samples here</span></td></tr>
+        <tr><td class="mono">tools/</td><td>Your own Python tools</td><td><span class="badge maybe">Only if needed</span></td></tr>
+        <tr><td class="mono">mcp.json</td><td>External MCP servers (Playwright, GitHub, your own)</td><td><span class="badge maybe">Only if needed</span></td></tr>
+      </table></div>
+      <div data-step><!--vsc:inside-slide--><div class="vsc vsc-slide" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+<div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
+<div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
+<div class="vr h-g" style="--d:0"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
+<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">prompts</span></div>
+<div class="vr h-star" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">agent.md</span><em class="vtag">⭐</em></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi json"></i><span class="vn">offline_script.json</span></div>
+<div class="vr" style="--d:2"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">skills</span></div>
+<div class="vr" style="--d:1"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">tools</span></div>
+<div class="vr" style="--d:1"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">workspace</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi toml"></i><span class="vn">agent.toml</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">BLUEPRINT.md</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">goal.md</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi toml"></i><span class="vn">guardrails.toml</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.examples.json</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.json</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+</div><!--/vsc:inside-slide--></div>
+    </div>
     <p class="muted" data-step style="margin-top:.8em">Right now it holds a tiny <b>placeholder</b> agent so everything runs on day one. You'll replace it with yours.</p>
   </div>
 </section>
@@ -870,6 +958,30 @@ open runs/index.html</pre>
       <div class="hb-top"><p class="kicker">Handbook · 1</p></div>
       <h2>The folder map</h2>
       <p class="hb-intro">The repository looks big. Almost none of it is yours. Here is everything, colour-coded — and the only green folder is where you work.</p>
+      <!--vsc:hb-map--><figure class="vfig"><div class="vsc" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+<div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
+<div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.cursor</span></div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.github</span></div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">.venv</span></div>
+<div class="vr h-b" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">app</span><em class="vtag">the engine</em></div>
+<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">docs</span></div>
+<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">examples</span></div>
+<div class="vr h-g" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
+<div class="vr" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">runs</span><em class="vtag">auto-created</em></div>
+<div class="vr" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">scripts</span></div>
+<div class="vr h-y" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">templates</span></div>
+<div class="vr ig" style="--d:0"><span class="vc">›</span><svg class="fo"><use href="#i-fold"/></svg><span class="vn">tests</span></div>
+<div class="vr h-p" style="--d:0"><span class="vc"></span><i class="fi env"></i><span class="vn">.env</span><em class="vtag">your secret</em></div>
+<div class="vr" style="--d:0"><span class="vc"></span><i class="fi env"></i><span class="vn">.env.example</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi git"></i><span class="vn">.gitignore</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">AGENTS.md</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">CLAUDE.md</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">GEMINI.md</span></div>
+<div class="vr ig" style="--d:0"><span class="vc"></span><i class="fi ini"></i><span class="vn">pytest.ini</span></div>
+<div class="vr" style="--d:0"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+<div class="vr" style="--d:0"><span class="vc"></span><i class="fi txt"></i><span class="vn">requirements.txt</span></div>
+</div><figcaption>This is what you see in VS Code's <b>Explorer</b> after you open the repository folder. Greyed-out names are files your tools hide or ignore.</figcaption></figure><!--/vsc:hb-map-->
       <div class="tree">
         <div class="t"><span class="n yours">my_agent/</span><span class="d"><b>YOUR AGENT — the only folder you edit.</b> Everything that makes this agent <em>your</em> agent lives here.</span></div>
         <div class="t"><span class="n key">.env</span><span class="d">Your secret API key. You create it once from <code>.env.example</code>. Never share it, never paste it into a chat.</span></div>
@@ -1059,6 +1171,31 @@ python -m app runs show latest  <span class="c"># the last run, as a tree</span>
       <div class="hb-top"><p class="kicker">Handbook · 6</p></div>
       <h2><code>my_agent/</code> — file by file</h2>
       <p class="hb-intro">Everything you edit, in one folder. An agent <em>is</em> a folder — you can run any folder with this shape.</p>
+      <!--vsc:hb-myagent--><figure class="vfig"><div class="vsc" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+<div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
+<div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
+<div class="vr h-g" style="--d:0"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">my_agent</span><em class="vtag">YOUR AGENT</em></div>
+<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">prompts</span></div>
+<div class="vr h-star" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">agent.md</span><em class="vtag">the job description</em></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi json"></i><span class="vn">offline_script.json</span></div>
+<div class="vr" style="--d:2"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">skills</span></div>
+<div class="vr" style="--d:3"><span class="vc"></span><i class="fi md"></i><span class="vn">evidence-based-writing.md</span></div>
+<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">tools</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">_example_tool.py</span><em class="vtag">copy me</em></div>
+<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">workspace</span><em class="vtag">your input files</em></div>
+<div class="vr" style="--d:2"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">output</span><em class="vtag">deliverables land here</em></div>
+<div class="vr" style="--d:3"><span class="vc"></span><i class="fi git"></i><span class="vn">.gitkeep</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi csv"></i><span class="vn">inventory.csv</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">meeting_notes.md</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">project_overview.md</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi toml"></i><span class="vn">agent.toml</span><em class="vtag">tools: max 4</em></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">BLUEPRINT.md</span><em class="vtag">plan first</em></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">goal.md</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi toml"></i><span class="vn">guardrails.toml</span><em class="vtag">the rules</em></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.examples.json</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi json"></i><span class="vn">mcp.json</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+</div><figcaption><code>my_agent/</code> fully expanded, exactly as it appears out of the box. The annotated list below explains each entry.</figcaption></figure><!--/vsc:hb-myagent-->
       <div class="tree">
         <div class="t"><span class="n yours">my_agent/</span><span class="d">your agent</span></div>
         <div class="t"><span class="n">├─ <b class="star">prompts/agent.md</b></span><span class="d"><b>⭐ the job description.</b> Mission, numbered phases, rules, hand-over, answer format. Most of your time goes here.</span></div>
@@ -1151,6 +1288,44 @@ run_command = 12               <span class="c"># "retry at most twice" → keep 
       <div class="hb-top"><p class="kicker">Handbook · 7</p></div>
       <h2><code>app/</code> — the engine, module by module</h2>
       <p class="hb-intro">You never edit these. They are here so you know what is handling what — and because reading them is the fastest way to learn how agents really work.</p>
+      <!--vsc:hb-engine--><figure class="vfig"><div class="vsc" role="img" aria-label="VS Code Explorer view of workshop-agent-template">
+<div class="vsc-h"><span>EXPLORER</span><span class="vsc-dots">···</span></div>
+<div class="vsc-t"><span class="vsc-ch">⌄</span>WORKSHOP-AGENT-TEMPLATE</div>
+<div class="vr h-b" style="--d:0"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">app</span><em class="vtag">the engine — don't edit</em></div>
+<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">prompts</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">loader.py</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi md"></i><span class="vn">system.md</span></div>
+<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">tools</span></div>
+<div class="vr" style="--d:2"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">builtin</span></div>
+<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
+<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">commands.py</span></div>
+<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">files.py</span></div>
+<div class="vr" style="--d:3"><span class="vc"></span><i class="fi py"></i><span class="vn">skills.py</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">_sandbox.py</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi py"></i><span class="vn">registry.py</span></div>
+<div class="vr" style="--d:1"><span class="vc">⌄</span><svg class="fo"><use href="#i-fopen"/></svg><span class="vn">ui</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi html"></i><span class="vn">index.html</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi html"></i><span class="vn">runs_index.html</span></div>
+<div class="vr" style="--d:2"><span class="vc"></span><i class="fi html"></i><span class="vn">trace_viewer.html</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">__init__.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">__main__.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">a2a_client.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">a2a_server.py</span></div>
+<div class="vr h-star" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">agent_loop.py</span><em class="vtag">⭐ read me</em></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">config.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">doctor.py</span></div>
+<div class="vr h-star" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">guardrails.py</span><em class="vtag">⭐ read me</em></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">llm_client.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">mcp_client.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">mcp_server.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi md"></i><span class="vn">README.md</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">runner.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">runs_cli.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">telemetry.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">trace.py</span></div>
+<div class="vr" style="--d:1"><span class="vc"></span><i class="fi py"></i><span class="vn">workspace.py</span></div>
+</div><figcaption><code>app/</code> expanded. Two files are worth your time: <code>agent_loop.py</code> and <code>guardrails.py</code>.</figcaption></figure><!--/vsc:hb-engine-->
       <div class="tree">
         <div class="t"><span class="n engine">app/</span><span class="d">the engine — generic, knows nothing about your problem</span></div>
         <div class="t"><span class="n">├─ __main__.py</span><span class="d"><b>1 · Entry points.</b> Turns <code>python -m app …</code> into a run; also <code>serve</code>, <code>doctor</code>, <code>runs</code></span></div>
@@ -1500,12 +1675,12 @@ curl -X POST http://localhost:8000/ \
     cancelAnimationFrame(scrollAnim);
     const from = hbBody.scrollTop, delta = to - from;
     // No animation when it can't be seen or isn't wanted: a hidden page gets no rAF ticks at all.
-    if (Math.abs(delta) < 2 || document.hidden || matchMedia("(prefers-reduced-motion: reduce)").matches) { hbBody.scrollTop = to; return; }
+    if (Math.abs(delta) < 2 || document.hidden || matchMedia("(prefers-reduced-motion: reduce)").matches) { hbBody.scrollTop = to; spy(); return; }
     const t0 = performance.now(), ms = Math.min(620, Math.max(240, Math.abs(delta) * 0.32));
     const step = now => {
       const p = Math.min(1, (now - t0) / ms);
       hbBody.scrollTop = from + delta * (p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
-      if (p < 1) scrollAnim = requestAnimationFrame(step);
+      if (p < 1) scrollAnim = requestAnimationFrame(step); else spy();   // don't wait for a scroll event that may be coalesced
     };
     scrollAnim = requestAnimationFrame(step);
   };
@@ -1527,8 +1702,8 @@ curl -X POST http://localhost:8000/ \
     if (!on) { render(); return; }
     const target = hash && $(hash);
     hbBody.scrollTop = 0;
-    if (target) requestAnimationFrame(() => { scrollToSection(target); spy(); });
-    else spy();
+    if (target) hbBody.scrollTop = distanceTo(target) - 12;   // opening straight at a section: no animation
+    spy();
   };
   hbBody.addEventListener("scroll", () => { clearTimeout(hbBody._spy); hbBody._spy = setTimeout(spy, 80); }, { passive: true });
   hbLinks.forEach(a => a.onclick = e => {

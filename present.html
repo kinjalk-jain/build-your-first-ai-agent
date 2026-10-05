@@ -334,6 +334,11 @@ body.cue .hit.r::after{opacity:.85;transform:none;animation:edgepulse 1.6s ease-
 .pcoach .arr{position:absolute;right:-6px;top:50%;font-size:28px;color:var(--cheese);animation:edgepulse 1.6s ease-in-out infinite}
 .bar a.home{display:inline-flex;align-items:center;gap:.4em;height:36px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:.85em;font-weight:600;text-decoration:none;white-space:nowrap}
 .bar a.home:hover{border-color:var(--tomato);color:var(--tomato)}
+/* Handbook mode: the slide controls (back/next, slide title, slide count, "Show all") mean nothing here — hide them. */
+body.handbook #bPrev,body.handbook #bNext,body.handbook #where,body.handbook #count,body.handbook #bShow,body.handbook .pcoach{display:none}
+body.handbook .bar .credit{margin-left:auto}
+@media(min-width:861px){body.handbook #bMenu{display:none}}   /* the handbook's own sidebar is already visible on wide screens */
+@media(max-width:860px){body.handbook #bMenu{margin-left:auto}body.handbook .bar .credit{margin-left:0}}
 </style>
 </head>
 <body>

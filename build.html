@@ -60,24 +60,37 @@
     </div>
     <div class="bp">
       <form class="bp-form card" id="bpForm" autocomplete="off" onsubmit="return false">
-        <div class="bp-h"><span>1</span> Who is this agent?</div>
-        <label>Name<input id="f_name" type="text" maxlength="60"></label>
-        <label>One line: what is it for?<input id="f_desc" type="text" maxlength="160"></label>
-        <div class="bp-h"><span>2</span> The goal <small>(becomes <code>goal.md</code> — the default task)</small></div>
-        <label>In plain English<textarea id="f_goal" rows="2"></textarea></label>
-        <div class="bp-h"><span>3</span> The mission <small>(who reads the result, and why)</small></div>
-        <label>A short paragraph<textarea id="f_mission" rows="3"></textarea></label>
-        <div class="bp-h"><span>4</span> The phases <small>(the path it follows — 1 to 6)</small></div>
-        <div id="f_phases"></div>
-        <button type="button" class="btn sm ghost" id="addPhase">+ Add a phase</button>
-        <div class="bp-h"><span>5</span> Tools <small>(pick up to <b>4</b>) <span class="pill" id="toolCount"></span></small></div>
-        <div class="tools" id="f_tools"></div>
-        <div id="cmdBox" hidden><label>Commands <code>run_command</code> may run <small>(one per line — a command is allowed only if it <i>starts with</i> an entry)</small><textarea id="f_cmds" rows="2"></textarea></label></div>
-        <div class="bp-h"><span>6</span> Rules &amp; safety</div>
-        <label>Folders it may <b>change</b> <small>(comma-separated; end folders with “/”)</small><input id="f_writable" type="text"></label>
-        <label>Rules — things it must always / never do <small>(one per line)</small><textarea id="f_rules" rows="3"></textarea></label>
-        <label>Hand over to a human when… <small>(one per line)</small><textarea id="f_esc" rows="2"></textarea></label>
-        <label>Final answer format<textarea id="f_final" rows="2"></textarea></label>
+        <section class="bps" aria-labelledby="bph1">
+          <div class="bp-h"><span class="num">1</span><span class="ht"><b id="bph1">Who is this agent?</b><small>A name, and what it is for.</small></span></div>
+          <label class="fld"><span class="lt">Name</span><input id="f_name" type="text" maxlength="60"></label>
+          <label class="fld"><span class="lt">One line: what is it for?</span><input id="f_desc" type="text" maxlength="160"></label>
+        </section>
+        <section class="bps" aria-labelledby="bph2">
+          <div class="bp-h"><span class="num">2</span><span class="ht"><b id="bph2">The goal</b><small>Becomes <code>goal.md</code> — the default task.</small></span></div>
+          <label class="fld"><span class="lt">In plain English</span><textarea id="f_goal" rows="2"></textarea></label>
+        </section>
+        <section class="bps" aria-labelledby="bph3">
+          <div class="bp-h"><span class="num">3</span><span class="ht"><b id="bph3">The mission</b><small>Who reads the result, and why.</small></span></div>
+          <label class="fld"><span class="lt">A short paragraph</span><textarea id="f_mission" rows="3"></textarea></label>
+        </section>
+        <section class="bps" aria-labelledby="bph4">
+          <div class="bp-h"><span class="num">4</span><span class="ht"><b id="bph4">The phases</b><small>The path the agent follows. Add 1 to 6.</small></span></div>
+          <div id="f_phases"></div>
+          <button type="button" class="btn sm ghost" id="addPhase">+ Add a phase</button>
+        </section>
+        <section class="bps" aria-labelledby="bph5">
+          <div class="bp-h"><span class="num">5</span><span class="ht"><b id="bph5">Tools</b><small>What it may use. Pick up to 4.</small></span><span class="count" id="toolCount"></span></div>
+          <div class="tools" id="f_tools"></div>
+          <p class="toolnote" id="toolNote" aria-live="polite"></p>
+          <div id="cmdBox" hidden><label class="fld"><span class="lt">Commands <code>run_command</code> may run</span><span class="hint">One per line. A command is allowed only if it <i>starts with</i> an entry.</span><textarea id="f_cmds" rows="2"></textarea></label></div>
+        </section>
+        <section class="bps" aria-labelledby="bph6">
+          <div class="bp-h"><span class="num">6</span><span class="ht"><b id="bph6">Rules &amp; safety</b><small>What it must never do, and when to hand over.</small></span></div>
+          <label class="fld"><span class="lt">Folders it may change</span><span class="hint">Comma-separated. End a folder with “/”.</span><input id="f_writable" type="text"></label>
+          <label class="fld"><span class="lt">Rules</span><span class="hint">Things it must always or never do. One per line.</span><textarea id="f_rules" rows="3"></textarea></label>
+          <label class="fld"><span class="lt">Hand over to a human when…</span><span class="hint">One per line.</span><textarea id="f_esc" rows="2"></textarea></label>
+          <label class="fld"><span class="lt">Final answer format</span><textarea id="f_final" rows="2"></textarea></label>
+        </section>
         <div class="row"><button type="button" class="btn sm ghost" id="bpExample">↺ Reset to the example</button><button type="button" class="btn sm ghost" id="bpClear">Clear all</button></div>
       </form>
       <div class="bp-out">

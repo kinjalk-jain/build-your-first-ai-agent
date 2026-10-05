@@ -530,6 +530,40 @@ body.cue .hit.r::after{opacity:.85;transform:none;animation:edgepulse 1.6s ease-
   </div>
 </section>
 
+<section class="slide" data-id="who-starts" data-title="Who starts the agent?" data-group="Start here">
+  <div class="wrap">
+    <p class="kicker">Who starts the agent?</p>
+    <h2 data-step>You do — <span style="color:var(--tomato)">with one command.</span></h2>
+    <div class="grid g2" style="margin-top:1.2em">
+      <div class="card" data-step><h3>❌ Not this</h3><p><code>agent.md</code> → calls the skills → calls the tools. A markdown file can't run anything.</p></div>
+      <div class="card" data-step style="border-color:var(--basil)"><h3>✅ This</h3><p><code>python -m app</code> runs <code>app/__main__.py</code>. It <b>reads</b> <code>agent.md</code> and the skills <b>as text</b>, joins them into one prompt, and lets the model <i>ask</i> for tools. The program runs them.</p></div>
+    </div>
+    <p class="plain" data-step style="margin-top:1.2em">Your <b>goal</b> comes from, in this order: <code>--goal-file</code> · what you typed · <code>my_agent/goal.md</code> · a built-in default. Your <b>key</b> lives in <code>.env</code>, and only the model client ever uses it.</p>
+    <p data-step style="margin-top:1em"><a href="how-it-works.html#start">▶ Try it interactively — press Enter and watch →</a></p>
+  </div>
+</section>
+
+<section class="slide" data-id="run-e2e" data-title="Run it end to end" data-group="Start here">
+  <div class="wrap">
+    <p class="kicker">Run it end to end</p>
+    <h2 data-step>Ten minutes from zero <span style="color:var(--tomato)">to a real run.</span></h2>
+    <div class="two" style="margin-top:1.2em">
+      <pre data-step><span class="g">./scripts/setup.sh</span>            <span class="c"># once</span>
+<span class="g">source .venv/bin/activate</span>     <span class="c"># every new terminal</span>
+<span class="g">python -m app doctor</span>          <span class="c"># all ✓ ?</span>
+<span class="g">python -m app --offline</span>      <span class="c"># no key needed</span>
+<span class="c"># paste your key into .env → NVIDIA_API_KEY=…</span>
+<span class="g">python -m app</span>                  <span class="c"># uses my_agent/goal.md</span>
+<span class="g">python -m app "your goal"</span>       <span class="c"># or type one</span></pre>
+      <div>
+        <div class="card" data-step><h3>🔑 The key</h3><p>Goes in <code>.env</code> and nowhere else. Tools never see it.</p></div>
+        <div class="card" data-step style="margin-top:12px"><h3>🎯 The goal</h3><p><code>goal.md</code> is the <b>task</b>; <code>agent.md</code> is the <b>job description</b>.</p></div>
+      </div>
+    </div>
+    <p data-step style="margin-top:1em"><a href="how-it-works.html#run-it">▶ The interactive version — with your OS, copy buttons and four ways to give a goal →</a></p>
+  </div>
+</section>
+
 <section class="slide" data-id="first-hour" data-title="Your first hour" data-group="Start here">
   <div class="wrap">
     <p class="kicker">How do we start?</p>
@@ -1013,6 +1047,7 @@ open runs/index.html</pre>
     <h5>Understanding it</h5>
     <a href="#hb-built">What's already built</a>
     <a href="#hb-loop">How the loop works</a>
+    <a href="#hb-start">How a run starts</a>
     <h5>Building yours</h5>
     <a href="#hb-approach">How to approach your problem</a>
     <a href="#hb-myagent">my_agent/ — file by file</a>
@@ -1164,9 +1199,36 @@ python -m app runs show latest  <span class="c"># the last run, as a tree</span>
       <div class="note-box calm"><p><b>Want to read the code?</b> <code>app/agent_loop.py</code> is the shortest useful thing in the repo and it is commented for beginners. It is the fastest way to really understand agents.</p></div>
     </section>
 
+    <!-- ── how a run starts ── -->
+    <section id="hb-start">
+      <div class="hb-top"><p class="kicker">Handbook · 5</p></div>
+      <h2>How a run starts</h2>
+      <p class="hb-intro">The answer to “which file is the main one?”: <b>you start it</b>, with <code>python -m app</code>. No file in <code>my_agent/</code> calls another — they are text that the engine reads.</p>
+      <h3>The seven things that happen, in order</h3>
+      <table>
+        <tr><th>#</th><th>What happens</th><th>Where</th></tr>
+        <tr><td>1</td><td>Your command is read (<code>serve</code>, <code>runs</code>, <code>doctor</code> or a normal run)</td><td><code>app/__main__.py</code></td></tr>
+        <tr><td>2</td><td><code>.env</code> is loaded; later <code>agent.toml</code> and <code>guardrails.toml</code> are read</td><td><code>app/config.py</code></td></tr>
+        <tr><td>3</td><td>The goal is chosen: <code>--goal-file</code> → typed text → <code>my_agent/goal.md</code> → built-in default</td><td><code>app/__main__.py</code></td></tr>
+        <tr><td>4</td><td>A <code>runs/&lt;id&gt;/</code> folder is opened first, then your workspace is copied into it</td><td><code>app/runner.py</code>, <code>workspace.py</code></td></tr>
+        <tr><td>5</td><td>The tool hub starts the tool server and asks “what tools do you have?” — only those in <code>agent.toml</code> are offered</td><td><code>app/mcp_client.py</code>, <code>mcp_server.py</code></td></tr>
+        <tr><td>6</td><td><code>system.md</code> + your <code>agent.md</code> + your skills are joined into one system prompt</td><td><code>app/prompts/loader.py</code></td></tr>
+        <tr><td>7</td><td>The loop starts: system prompt + <code>GOAL:</code> → ask the model → run its tools → repeat until it asks for none</td><td><code>app/agent_loop.py</code></td></tr>
+      </table>
+      <h3>One tool call, up close</h3>
+      <pre>model replies:  read_file {"path": "meeting_notes.md"}      <span class="c">← just text; nothing has run</span>
+agent_loop      asks guardrails.check_before()  →  None           <span class="c">← allowed</span>
+agent_loop      hub.call("read_file", args)                      <span class="c">← ToolHub (mcp_client.py)</span>
+ToolHub         session.call_tool() over MCP                     <span class="c">← to the tool server</span>
+tool server     runs read_file() in tools/builtin/files.py       <span class="c">← the only place real things happen</span>
+result          text → cut at 6,000 chars → sanitize_output()    <span class="c">← secrets blanked, tripwire for injection</span>
+agent_loop      appends {"role": "tool", …} and asks the model again</pre>
+      <div class="note-box calm"><p><b>See it move.</b> The interactive page <a href="how-it-works.html">How it really works</a> lets you watch a recorded run, shift the gearbox of a tool call, and see which file is read when.</p></div>
+    </section>
+
     <!-- ── how to approach ── -->
     <section id="hb-approach">
-      <div class="hb-top"><p class="kicker">Handbook · 5</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 6</p></div>
       <h2>How to approach your problem</h2>
       <p class="hb-intro">Don't open the keyboard first. The best agents come from a clear plan, not from clever code. Work through this and fill in <code>my_agent/BLUEPRINT.md</code> as you go — about 20–25 minutes, thinking rather than typing. Alone or with others.</p>
 
@@ -1246,7 +1308,7 @@ python -m app runs show latest  <span class="c"># the last run, as a tree</span>
 
     <!-- ── my_agent file by file ── -->
     <section id="hb-myagent">
-      <div class="hb-top"><p class="kicker">Handbook · 6</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 7</p></div>
       <h2><code>my_agent/</code> — file by file</h2>
       <p class="hb-intro">Everything you edit, in one folder. An agent <em>is</em> a folder — you can run any folder with this shape.</p>
       <!--vsc:hb-myagent--><div class="vlive"><div class="vsc" role="group" aria-label="VS Code Explorer view of workshop-agent-template">
@@ -1284,7 +1346,7 @@ python -m app runs show latest  <span class="c"># the last run, as a tree</span>
         <div class="t"><span class="n">├─ mcp.json</span><span class="d">outside tool servers (Playwright, GitHub, your own). Empty by default</span></div>
         <div class="t"><span class="n">├─ mcp.examples.json</span><span class="d">copy-paste entries for the above. Nothing here is active</span></div>
         <div class="t"><span class="n">├─ goal.md</span><span class="d">the default task, used when you run <code>python -m app</code> with no arguments</span></div>
-        <div class="t"><span class="n">├─ BLUEPRINT.md</span><span class="d">the planning worksheet (section 5 explains how to fill it in)</span></div>
+        <div class="t"><span class="n">├─ BLUEPRINT.md</span><span class="d">the planning worksheet (section 6 explains how to fill it in)</span></div>
         <div class="t"><span class="n">├─ tools/</span><span class="d">your own Python tools. <code>_example_tool.py</code> = copy me. Files starting with <code>_</code> are off</span></div>
         <div class="t"><span class="n">└─ workspace/</span><span class="d">your input files — the <b>only</b> folder the agent can see. Deliverables go to <code>workspace/output/</code></span></div>
       </div>
@@ -1363,7 +1425,7 @@ run_command = 12               <span class="c"># "retry at most twice" → keep 
 
     <!-- ── the engine ── -->
     <section id="hb-engine">
-      <div class="hb-top"><p class="kicker">Handbook · 7</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 8</p></div>
       <h2><code>app/</code> — the engine, module by module</h2>
       <p class="hb-intro">You never edit these. They are here so you know what is handling what — and because reading them is the fastest way to learn how agents really work.</p>
       <!--vsc:hb-engine--><div class="vlive"><div class="vsc" role="group" aria-label="VS Code Explorer view of workshop-agent-template">
@@ -1434,7 +1496,7 @@ run_command = 12               <span class="c"># "retry at most twice" → keep 
 
     <!-- ── tools ── -->
     <section id="hb-tools">
-      <div class="hb-top"><p class="kicker">Handbook · 8</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 9</p></div>
       <h2>Tools — what your agent can do</h2>
       <p class="hb-intro">A tool is a function the model can ask for. It fetches a fact or performs one action and returns <b>real output</b> — never a guess. Pick up to four in <code>agent.toml</code>.</p>
       <table>
@@ -1451,7 +1513,7 @@ run_command = 12               <span class="c"># "retry at most twice" → keep 
 
     <!-- ── MCP ── -->
     <section id="hb-mcp">
-      <div class="hb-top"><p class="kicker">Handbook · 9</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 10</p></div>
       <h2>MCP — plugging in outside tools</h2>
       <p class="hb-intro">MCP (Model Context Protocol) is the standard plug between an agent and tools. Your built-in tools already travel over it; outside servers connect the same way.</p>
       <table>
@@ -1497,7 +1559,7 @@ run_command = 12               <span class="c"># "retry at most twice" → keep 
 
     <!-- ── guardrails ── -->
     <section id="hb-guardrails">
-      <div class="hb-top"><p class="kicker">Handbook · 10</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 11</p></div>
       <h2>Guardrails — rules it cannot break</h2>
       <p class="hb-intro">The prompt <em>asks</em>. Guardrails <b>enforce</b>. A model can be confused, or tricked by text inside a file it reads — the guardrails hold anyway.</p>
       <table>
@@ -1520,7 +1582,7 @@ run_command = 12               <span class="c"># "retry at most twice" → keep 
 
     <!-- ── tracing ── -->
     <section id="hb-tracing">
-      <div class="hb-top"><p class="kicker">Handbook · 11</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 12</p></div>
       <h2>Tracing — seeing what happened</h2>
       <p class="hb-intro">An agent decides things by itself, so you must be able to replay its thinking. Every run is recorded automatically — even one that crashes.</p>
       <div class="tree">
@@ -1557,7 +1619,7 @@ python -m app runs prune --keep 20 <span class="c"># tidy up</span></pre>
 
     <!-- ── running ── -->
     <section id="hb-run">
-      <div class="hb-top"><p class="kicker">Handbook · 12</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 13</p></div>
       <h2>Running it — three doors</h2>
       <p class="hb-intro">The same agent, three ways in. All three go through the same code, so they behave identically and leave the same records.</p>
       <h3>① Terminal</h3>
@@ -1589,7 +1651,7 @@ curl -X POST http://localhost:8000/ \
 
     <!-- ── env ── -->
     <section id="hb-env">
-      <div class="hb-top"><p class="kicker">Handbook · 13</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 14</p></div>
       <h2><code>.env</code> — settings and secrets</h2>
       <p class="hb-intro">Copy <code>.env.example</code> to <code>.env</code> (setup does it for you), then edit <code>.env</code>. It is git-ignored. <b>Never paste it into a chat or an AI coding tool.</b></p>
       <table>
@@ -1601,14 +1663,14 @@ curl -X POST http://localhost:8000/ \
         <tr><td><code>MAX_TURNS</code>, <code>MIN_SECONDS_BETWEEN_CALLS</code></td><td>no</td><td>run length; politeness to the free tier</td></tr>
         <tr><td><code>TRACE_CONTENT=off</code></td><td>no</td><td>don't keep message text in <code>runs/</code></td></tr>
         <tr><td><code>OTEL_EXPORTER_OTLP_ENDPOINT</code></td><td>no</td><td>also send traces to Phoenix / Langfuse / Jaeger</td></tr>
-        <tr><td><code>A2A_TOKEN</code>, <code>PUBLIC_URL</code>, <code>PUBLIC_HOSTS</code></td><td>only to share your agent</td><td>see section 12</td></tr>
+        <tr><td><code>A2A_TOKEN</code>, <code>PUBLIC_URL</code>, <code>PUBLIC_HOSTS</code></td><td>only to share your agent</td><td>see section 13</td></tr>
       </table>
       <div class="note-box warn"><p><b>Automatic fail:</b> a key or password visible anywhere in your work. They live in <code>.env</code> and nowhere else. The program blanks out anything that looks like a secret before it reaches a log, a report or an answer — but don't rely on that; just keep them in <code>.env</code>.</p></div>
     </section>
 
     <!-- ── troubleshooting ── -->
     <section id="hb-trouble">
-      <div class="hb-top"><p class="kicker">Handbook · 14</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 15</p></div>
       <h2>Troubleshooting</h2>
       <p class="hb-intro">Start with <code>python -m app doctor</code>. It checks your whole setup and explains how to fix each ✗.</p>
       <table>
@@ -1630,7 +1692,7 @@ curl -X POST http://localhost:8000/ \
 
     <!-- ── glossary ── -->
     <section id="hb-words">
-      <div class="hb-top"><p class="kicker">Handbook · 15</p></div>
+      <div class="hb-top"><p class="kicker">Handbook · 16</p></div>
       <h2>Words explained</h2>
       <table>
         <tr><td><b>Agent</b></td><td>An AI that works toward a goal in a loop: decide → use a tool → look at the result → decide again.</td></tr>

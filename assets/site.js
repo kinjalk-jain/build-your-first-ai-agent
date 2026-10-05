@@ -191,6 +191,7 @@
   function typeLines(el, lines, { speed = 14, pause = 380, loop = false } = {}) {
     // typewriter for hero terminals; lines = [{html, type:true|false}]
     let alive = true; el.innerHTML = "";
+    if (reduced()) { lines.forEach(l => { const row = document.createElement("span"); row.className = "tl"; row.innerHTML = l.html; el.append(row); }); return () => {}; }
     const run = async () => {
       do {
         el.innerHTML = "";

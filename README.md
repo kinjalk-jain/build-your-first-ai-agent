@@ -1,41 +1,62 @@
-# Build Your First AI Agent — a beginner's guide
+# Build Your First AI Agent — an interactive beginner's guide
 
-A friendly, slide-style walkthrough of an **AI agent template**, told as a pizza kitchen ("Agent Kitchen").
-No AI expertise needed — it explains prompts, tools, MCP, guardrails and tracing in plain language.
-One file (`index.html`), no build step, no dependencies, no external requests — it works offline and on any static host.
+A friendly, **interactive** guide to an AI-agent template, told as a pizza kitchen ("Agent Kitchen").
+No AI expertise needed. Static files only — no build step, no dependencies, no external requests — so it works offline and on any static host.
 
-It has two parts in the same page:
-- **Slides** — the story: what an agent is, the 12 "ingredients", how to plan one, and what to do when things go wrong.
-- **Handbook** (press **H**) — the same material written out in detail: folder map, setup, tools, MCP, guardrails, tracing, troubleshooting.
+It explains the companion template, [`csqa-agentix/workshop-agent-template`](https://github.com/csqa-agentix/workshop-agent-template), and every file name, function and message in it was checked against that repo (commit `70b4bf3`).
 
-## Read it
-Open `index.html` in a browser (or the hosted URL) and press **F** for full screen.
+## What's in it
+
+| Page | File | What it does |
+|---|---|---|
+| **Home** `/` | `index.html` | Three doors — *never heard of agents* / *how does it really work?* / *build one now* — plus "continue where you left off". |
+| **1 · Meet an agent** `/journey` | `journey.html` | Chatbot-vs-agent, a watch-it-work demo with predict-and-reveal, the loop, a scroll-driven pizza-kitchen map (kitchen words ↔ real names), a peek at the real files. ~6 min. |
+| **2 · How it works** `/how-it-works` | `how-it-works.html` | *Who starts the agent?* (a "press Enter" simulator and the seven startup stages), how `agent.md` + skills + goal become one prompt, a four-zoom architecture map, a **recorded-run player** with scrubber, the **tool-call gearbox** with four "break it" scenarios, *where is my file used?*, and *run it end to end*. ~12 min. |
+| **3 · Build yours** `/build` | `build.html` | A 20-step checklist that remembers your progress (OS-aware commands, copy buttons) and a **blueprint builder** that writes `agent.md`, `agent.toml`, `guardrails.toml` and `goal.md` for you. ~1 hour. |
+| **4 · Handbook** `/handbook` | `handbook.html` → `present.html#hb-map` | The full written reference (folder maps, MCP, guardrails, tracing, troubleshooting, words explained). |
+| **Present** `/present` | `present.html` | The original click-through slide deck, kept for workshops. Old links such as `/#i7-mcp` and `/#hb-mcp` are redirected here. |
+
+Shared code lives in `assets/`: `site.css` / `site.js` (top bar, theme, saved progress, glossary tooltips, first-visit tip), plus one stylesheet/script pair per page. `assets/diagram.js` is the architecture diagram used twice on the *How it works* page.
+
+## Design rules it follows
+
+- **Three layers per idea:** *Glance* (a picture and one sentence) → *Play* (click, step, scrub, break it) → *Dive* (real code and GitHub links, folded away).
+- **Scroll, don't click-click-click.** Arrow keys jump between sections; each chapter ends with a big **Next** card; a sticky bar shows where you are.
+- **Honest examples.** The runs are *recorded* and labelled as such — they are simplified from the template's real log format, never presented as live model output.
+- Works on phones, in dark mode, with the keyboard, and with `prefers-reduced-motion`. Reading works without JavaScript; interactions need it.
 
 | Key | Does |
 |---|---|
-| `→` `Space` `PageDown` / click right side | next step (bullets appear one by one), then next slide |
-| `←` `PageUp` / click left side | back |
-| `Home` `End` | first / last slide |
-| `M` | menu: jump to any slide |
-| `S` | show everything on a slide at once (good for reading on your own screen) |
-| `H` | open the written handbook · `H` or `Esc` returns to the slides |
+| `→` / `←` | jump to the next / previous section |
+| `?` | how to get around |
 | `T` | light / dark |
-| `F` | full screen |
-| `?` | help |
+| `Esc` | close help |
 
-In the handbook, the folder views look like VS Code's Explorer and are clickable: pick any file or folder to see what it is, how you'll use it, and a **View on GitHub** link to it in the [template repo](https://github.com/csqa-agentix/workshop-agent-template) (`main` branch). The repo address is set once, in the `REPO` constant in `index.html`.
+The slide deck (`/present`) keeps its own keys: `→` `Space` next · `←` back · `M` menu · `S` show all · `H` handbook · `T` theme · `F` full screen · `?` help.
 
-Deep links work for both parts: `…/#i7-mcp` opens a specific slide, `…/#hb-mcp` opens a handbook section. Swipe works on phones (where the handbook's contents live behind the **Menu** button).
+## Run it locally
 
-## Deploy to Vercel (free)
-**Option A — from GitHub (recommended: every `git push` redeploys)**
-1. Push this folder to a GitHub repo (e.g. `build-your-first-ai-agent`).
-2. vercel.com → *Add New… → Project* → import the repo → Framework preset **Other** → leave build settings empty → Deploy.
-
-**Option B — Vercel CLI (no GitHub needed)**
 ```bash
-cd build-your-first-ai-agent
-npx vercel --prod          # first time: log in, accept the defaults ("Other" framework, no build command)
+python3 -m http.server 8000      # then open http://localhost:8000
 ```
 
-Vercel serves `index.html` at the root. Share the short production URL (`<project-name>.vercel.app`) with readers.
+(Any static server works; `vercel.json` turns on clean URLs so `/how-it-works` resolves to `how-it-works.html`.)
+
+## Updating the content
+
+- The template repo address is set once in `assets/site.js` (`REPO`, `BRANCH`) and in `present.html`.
+- `assets/diagram.js` holds the architecture (nodes, edges, per-box explanations). `assets/how.js` holds the recorded run, the stages and the gearbox scenarios.
+- If the template changes, re-check the file names, function names and quoted messages, then update the commit shown at the bottom of *How it works*.
+
+## Deploy to Vercel (free)
+
+**From GitHub (recommended: every `git push` redeploys)**
+1. Push this folder to a GitHub repo.
+2. vercel.com → *Add New… → Project* → import the repo → Framework preset **Other** → leave build settings empty → Deploy.
+
+**Vercel CLI**
+```bash
+npx vercel --prod      # first time: log in, accept the defaults ("Other" framework, no build command)
+```
+
+Vercel serves `index.html` at the root. Share the short production URL (`<project-name>.vercel.app`).

@@ -92,6 +92,7 @@
       <button class="tbtn" id="tHelp" title="Help (?)" aria-label="Help">?</button>
       <button class="tbtn" id="tTheme" title="Light / dark" aria-label="Toggle light or dark">🌓</button>
       <div class="pbar" id="pbar"></div>`;
+    const cur = $(".tnav a[aria-current]", bar); if (cur) { const n = $(".tnav", bar); n.scrollLeft = cur.offsetLeft - n.clientWidth / 2 + cur.clientWidth / 2; }
     $("#tTheme").onclick = toggleTheme; $("#tHelp").onclick = () => toggleHelp();
     const upd = () => { const h = root.scrollHeight - innerHeight; $("#pbar").style.width = (h > 0 ? scrollY / h * 100 : 0) + "%"; };
     addEventListener("scroll", upd, { passive: true }); upd();

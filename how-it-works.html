@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How it really works — Build Your First AI Agent</title>
+<meta name="description" content="Press Enter — then what? An interactive, file-by-file tour of what happens inside an AI agent: who starts it, how your prompt files are used, and how a tool call really runs.">
+<meta property="og:title" content="How an AI agent really works — interactive">
+<meta property="og:description" content="Watch a recorded run, shift the gearbox of a tool call, and see which file does what.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c98a4b'/%3E%3Ccircle cx='50' cy='50' r='38' fill='%23e5472d'/%3E%3Ccircle cx='38' cy='40' r='7' fill='%23f2b53a'/%3E%3Ccircle cx='62' cy='58' r='7' fill='%23f2b53a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/how.css">
+</head>
+<body>
+<header id="topbar"></header>
+
+<main>
+<!-- ═════════ hero ═════════ -->
+<section class="hero sec" id="top" data-title="Press Enter. Then what?">
+  <div class="wrap">
+    <p class="kicker">Chapter 2 · about 12 minutes · interactive</p>
+    <h1>You press Enter.<br><em>Then what?</em></h1>
+    <p class="lead">You've met the agent. Now lift the bonnet. By the end you'll know <b>who starts it</b>, <b>where your goal and your key go</b>, and <b>how a “tool call” really runs</b> — and which file is responsible at every moment.</p>
+    <div class="jump">
+      <a href="#start"><b>1</b> Who starts it?</a>
+      <a href="#assemble"><b>2</b> How files become a prompt</a>
+      <a href="#map"><b>3</b> The whole picture</a>
+      <a href="#run"><b>4</b> Watch a run</a>
+      <a href="#gearbox"><b>5</b> The gearbox</a>
+      <a href="#files"><b>6</b> Where's my file?</a>
+      <a href="#run-it"><b>7</b> Run it yourself</a>
+    </div>
+    <div class="note calm reveal"><p><b>How to read this page:</b> every section has something to <b>click</b>. Words with a dotted underline explain themselves. Anything folded under <b>“Show real code”</b> is optional depth. Names of files link to the real code on GitHub.</p></div>
+  </div>
+</section>
+
+<!-- ═════════ 1 · who starts it ═════════ -->
+<section class="sec" id="start" data-title="Who starts the agent?">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">1 · The starting line</p>
+      <h2>Who starts the agent?</h2>
+      <p class="lead"><b>You do — with one command.</b> No file in your project “calls” another. The only program that runs is the engine in <code>app/</code>; your markdown files are text it <i>reads</i>.</p>
+    </div>
+
+    <div class="grid g2 reveal">
+      <div class="card myth">
+        <span class="badge" style="background:color-mix(in srgb,var(--tomato) 16%,transparent);color:var(--tomato)">❌ A common guess</span>
+        <div class="flow"><span class="fb">agent.md</span><i>calls</i><span class="fb">skills</span><i>call</i><span class="fb">tools</span></div>
+        <p class="muted">“agent.md is the main file that runs the others.” It feels natural — but a markdown file can't run anything.</p>
+      </div>
+      <div class="card truth">
+        <span class="badge" style="background:color-mix(in srgb,var(--basil) 16%,transparent);color:var(--basil)">✅ What really happens</span>
+        <div class="flow"><span class="fb hot">python -m app</span><i>reads</i><span class="fb">agent.md + skills</span><i>→</i><span class="fb">the <span data-g="model">model</span></span><i>asks</i><span class="fb">tools</span></div>
+        <p class="muted">The <b>program</b> starts, reads your files <b>as text</b>, and lets the model <i>ask</i> for tools. The program runs them.</p>
+      </div>
+    </div>
+
+    <h3 class="sub reveal">Try it: press Enter</h3>
+    <p class="muted reveal">Pick a command. Watch how the engine decides what your <b>goal</b> is.</p>
+    <div class="card reveal" id="sim"></div>
+
+    <h3 class="sub reveal">The seven things that happen, in order</h3>
+    <p class="muted reveal">Click a step — or press <b>Play</b> and watch them in sequence.</p>
+    <div class="card reveal" id="stages"></div>
+  </div>
+</section>
+
+<!-- ═════════ 2 · files become a prompt ═════════ -->
+<section class="sec" id="assemble" data-title="How your files become one prompt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">2 · Your files, joined</p>
+      <h2>How your files become <i>one</i> prompt</h2>
+      <p class="lead">This answers “which file calls the skills?”. None does. A small file, <code>loader.py</code>, <b>glues three kinds of text together</b> and sends that to the <span data-g="model">model</span>.</p>
+    </div>
+    <div class="card reveal" id="asm"></div>
+  </div>
+</section>
+
+<!-- ═════════ 3 · the map ═════════ -->
+<section class="sec" id="map" data-title="The whole picture">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">3 · The whole picture</p>
+      <h2>One map. Four zoom levels.</h2>
+      <p class="lead">Start with the kitchen, then zoom in until you're looking at real file names and real functions. <b>Click any box</b> to see what it does.</p>
+    </div>
+    <div class="toolbar reveal"><span class="lbl">Zoom</span>
+      <div class="seg" id="mapZoom" role="group" aria-label="Zoom level"><button data-v="kitchen">🍕 Kitchen</button><button data-v="real" aria-pressed="true">Real names</button><button data-v="files">📄 Files</button><button data-v="code">{ } Code</button></div>
+    </div>
+    <div class="mapgrid reveal">
+      <div class="dg-scroll"><div id="mapHost"></div><p class="swipe muted">← swipe the diagram →</p></div>
+      <aside class="panel" id="mapPanel" aria-live="polite"></aside>
+    </div>
+    <div class="legend reveal"><span class="lg in">your files</span><span class="lg eng">the engine</span><span class="lg safe">safety</span><span class="lg ext">outside the loop</span><span class="lg rec">recording</span><span class="lg you">you</span></div>
+  </div>
+</section>
+
+<!-- ═════════ 4 · watch a run ═════════ -->
+<section class="sec" id="run" data-title="Watch a run">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">4 · Press play</p>
+      <h2>Watch one run, from Enter to answer</h2>
+      <p class="lead">A recorded run of the template's example agent. Press <b>Play</b>, or drag the slider to scrub like a video. The glowing boxes show <b>which file is working right now</b>.</p>
+    </div>
+    <div id="player" class="reveal"></div>
+  </div>
+</section>
+
+<!-- ═════════ 5 · gearbox ═════════ -->
+<section class="sec" id="gearbox" data-title="The tool-call gearbox">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">5 · The gearbox</p>
+      <h2>What really happens when the agent “calls a tool”</h2>
+      <p class="lead">Think of a car. When you shift from second to third gear you don't touch the wheels — you move a lever, and a <b>gearbox</b> does the rest. An agent works the same way.</p>
+    </div>
+    <div class="card reveal" id="gearAnalogy"></div>
+    <h3 class="sub reveal">Now follow one real tool call</h3>
+    <p class="muted reveal">Step through it, then <b>try to break it</b> — pick a scenario and watch the guardrails react.</p>
+    <div class="card reveal" id="seq"></div>
+  </div>
+</section>
+
+<!-- ═════════ 6 · where is my file ═════════ -->
+<section class="sec" id="files" data-title="Where is my file used?">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">6 · Your files, in time</p>
+      <h2>“If I edit this file… when does it matter?”</h2>
+      <p class="lead">Pick a file. The timeline lights up the exact moment it's read — and what changes when you edit it.</p>
+    </div>
+    <div class="card reveal" id="filesPick"></div>
+  </div>
+</section>
+
+<!-- ═════════ 7 · run it ═════════ -->
+<section class="sec" id="run-it" data-title="Run it end to end">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">7 · Your turn</p>
+      <h2>Run it end to end</h2>
+      <p class="lead">From zero to a real run in about ten minutes. Then: where your key goes, and the four ways to give the agent its goal.</p>
+    </div>
+    <div class="card reveal" id="runit"></div>
+  </div>
+</section>
+
+<!-- ═════════ end ═════════ -->
+<section class="sec" id="end" data-title="What you now know">
+  <div class="wrap" style="max-width:860px">
+    <div class="checkpoint reveal" data-chapter-end>
+      <h3>✓ You now know…</h3>
+      <ul>
+        <li><b>You</b> start the agent with <code>python -m app</code>. <code>agent.md</code> is read as text — it calls nothing.</li>
+        <li>Your goal comes from the command, <code>--goal-file</code>, <code>goal.md</code>, or the web page / URL. Your key lives in <code>.env</code> and only the model client uses it.</li>
+        <li>A “tool call” is the model <i>asking</i>; the loop checks the rules, the tool hub forwards it, and a plain Python function does the real work.</li>
+      </ul>
+    </div>
+    <a class="next-card reveal" href="build.html"><span class="nk">Next up · Chapter 3 of 4</span><strong>Build yours: your first hour</strong><span class="muted">A checklist that remembers your progress — plus a blueprint builder that writes your first files.</span><span class="go">Continue</span></a>
+    <p class="muted" style="text-align:center;margin-top:22px;font-size:.88rem">Facts on this page were checked against the <a href="https://github.com/csqa-agentix/workshop-agent-template" target="_blank" rel="noopener noreferrer">template repo</a> at commit <code>70b4bf3</code>. The “recorded run” is simplified from the template's real log format.</p>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap">Hand-tossed by <a href="https://www.linkedin.com/in/kinjalk-jain" target="_blank" rel="noopener noreferrer">KINJALK</a> · <a href="index.html">Home</a> · <a href="present.html">Slide deck</a></div></footer>
+</main>
+
+<script src="assets/site.js"></script>
+<script src="assets/diagram.js"></script>
+<script src="assets/how.js"></script>
+<script>Site.init({ page: "how" });</script>
+</body>
+</html>

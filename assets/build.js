@@ -118,7 +118,7 @@
     let tab = "agent";
 
     // form building
-    const phaseRow = (p = ["", "", ""], n) => `<div class="phrow"><span class="n">${n}</span><div class="f"><input class="pt" type="text" placeholder="Phase name, e.g. Discover" value="${esc(p[0])}" aria-label="Phase name"><textarea class="pw" rows="2" placeholder="What to do, and which tools" aria-label="What to do">${esc(p[1])}</textarea><input class="pd" type="text" placeholder="Done when… (how will it know to move on?)" value="${esc(p[2])}" aria-label="Done when"></div><button type="button" class="x" title="Remove this phase" aria-label="Remove phase">✕</button></div>`;
+    const phaseRow = (p = ["", "", ""], n) => `<div class="phrow"><span class="n">${n}</span><div class="f"><label class="fld"><span class="lt">Phase name</span><input class="pt" type="text" placeholder="e.g. Discover" value="${esc(p[0])}"></label><label class="fld"><span class="lt">What it does</span><textarea class="pw" rows="2" placeholder="What to do, and which tools to use">${esc(p[1])}</textarea></label><label class="fld"><span class="lt">Done when…</span><input class="pd" type="text" placeholder="How will it know to move on?" value="${esc(p[2])}"></label></div><button type="button" class="x" title="Remove this phase" aria-label="Remove phase ${n}">✕</button></div>`;
     const renum = () => $$(".phrow .n", f("f_phases")).forEach((n, i) => (n.textContent = i + 1));
     const fillForm = d => {
       f("f_name").value = d.name; f("f_desc").value = d.desc; f("f_goal").value = d.goal; f("f_mission").value = d.mission;
@@ -127,11 +127,12 @@
       f("f_cmds").value = d.cmds; f("f_writable").value = d.writable; f("f_rules").value = d.rules; f("f_esc").value = d.esc; f("f_final").value = d.final;
       toolsUi(); out();
     };
-    f("f_tools").innerHTML = TOOLS.map(([k, h, d]) => `<label class="tool"><input type="checkbox" value="${k}"><span><b>${k}</b><small>${esc(h)}${k === "run_command" ? " — <b>off by default</b>" : ""}</small></span></label>`).join("");
+    f("f_tools").innerHTML = TOOLS.map(([k, h]) => `<label class="tool"><input type="checkbox" value="${k}"><span class="tb"><span class="tn">${k}${k === "run_command" ? ' <span class="tag">off by default</span>' : ""}</span><span class="td">${esc(h)}</span></span></label>`).join("");
     const toolsUi = () => {
-      const on = $$("input", f("f_tools")).filter(i => i.checked).length;
-      $$(".tool", f("f_tools")).forEach(l => { const i = $("input", l); l.classList.toggle("on", i.checked); const full = on >= 4 && !i.checked; l.classList.toggle("off", full); i.disabled = full; });
-      f("toolCount").textContent = `${on} / 4 chosen`;
+      const on = $$("input", f("f_tools")).filter(i => i.checked).length, full = on >= 4;
+      $$(".tool", f("f_tools")).forEach(l => { const i = $("input", l); l.classList.toggle("on", i.checked); const blocked = full && !i.checked; l.classList.toggle("off", blocked); i.disabled = blocked; l.title = blocked ? "Maximum of 4 reached — untick a tool first" : ""; });
+      f("toolCount").textContent = `${on} of 4 chosen`; f("toolCount").classList.toggle("full", full);
+      f("toolNote").textContent = full ? "That's the maximum. Untick a tool to choose a different one — a small, sharp toolset beats a big one." : on === 0 ? "Pick at least one tool, or the agent can't do anything." : "";
       f("cmdBox").hidden = !$("input[value=run_command]", f("f_tools")).checked;
     };
     const checksUi = s => {

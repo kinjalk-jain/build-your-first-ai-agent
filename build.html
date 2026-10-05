@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build yours — Build Your First AI Agent</title>
+<meta name="description" content="Your first hour building an AI agent: a checklist that remembers your progress, and a blueprint builder that writes your first agent files for you.">
+<meta property="og:title" content="Build your first AI agent — your first hour">
+<meta property="og:description" content="A saved checklist, plus a blueprint builder that generates agent.md, agent.toml, guardrails.toml and goal.md.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c98a4b'/%3E%3Ccircle cx='50' cy='50' r='38' fill='%23e5472d'/%3E%3Ccircle cx='38' cy='40' r='7' fill='%23f2b53a'/%3E%3Ccircle cx='62' cy='58' r='7' fill='%23f2b53a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/build.css">
+</head>
+<body>
+<header id="topbar"></header>
+
+<main>
+<!-- ═════════ hero ═════════ -->
+<section class="hero sec" id="top" data-title="Build yours: your first hour">
+  <div class="wrap">
+    <p class="kicker">Chapter 3 · about an hour · hands-on</p>
+    <h1>Build yours:<br><em>your first hour.</em></h1>
+    <p class="lead">You don't start from a blank page. You start from a <b>working agent</b>, change one sentence, see it behave differently — and then turn it into <i>yours</i>. Your progress is saved in this browser.</p>
+    <div class="cta"><a class="btn pri" href="#checklist">Open my checklist →</a><a class="btn ghost" href="#blueprint">Jump to the blueprint builder</a></div>
+  </div>
+</section>
+
+<!-- ═════════ the plan ═════════ -->
+<section class="sec" id="plan" data-title="The plan">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">1 · The plan</p>
+      <h2>Four steps. Sixty minutes.</h2>
+    </div>
+    <div class="grid g3 plan" id="planCards"></div>
+  </div>
+</section>
+
+<!-- ═════════ checklist ═════════ -->
+<section class="sec" id="checklist" data-title="Your checklist">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">2 · Your checklist</p>
+      <h2>Tick as you go.</h2>
+      <p class="lead">Each step is small. Commands have a <b>Copy</b> button. Close the tab and come back — your ticks are remembered.</p>
+    </div>
+    <div class="toolbar reveal"><span class="lbl">Your computer</span><div class="seg" id="bOs" role="group" aria-label="Operating system"><button data-v="unix">macOS / Linux</button><button data-v="win">Windows</button></div></div>
+    <div class="progress" id="bProg" role="progressbar" aria-valuemin="0" aria-valuemax="100"><div class="bar"><i id="bBar"></i></div><span id="bTxt"></span><button class="linkbtn" id="bReset">Reset</button></div>
+    <div id="bList"></div>
+  </div>
+</section>
+
+<!-- ═════════ blueprint ═════════ -->
+<section class="sec" id="blueprint" data-title="Blueprint builder">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">3 · The blueprint builder</p>
+      <h2>Answer six questions. Get your first files.</h2>
+      <p class="lead">Fill in the form (it starts with the example agent, so edit it into yours). On the right, <code>agent.md</code>, <code>agent.toml</code>, <code>guardrails.toml</code> and <code>goal.md</code> write themselves — copy or download them into <code>my_agent/</code>.</p>
+    </div>
+    <div class="bp">
+      <form class="bp-form card" id="bpForm" autocomplete="off" onsubmit="return false">
+        <div class="bp-h"><span>1</span> Who is this agent?</div>
+        <label>Name<input id="f_name" type="text" maxlength="60"></label>
+        <label>One line: what is it for?<input id="f_desc" type="text" maxlength="160"></label>
+        <div class="bp-h"><span>2</span> The goal <small>(becomes <code>goal.md</code> — the default task)</small></div>
+        <label>In plain English<textarea id="f_goal" rows="2"></textarea></label>
+        <div class="bp-h"><span>3</span> The mission <small>(who reads the result, and why)</small></div>
+        <label>A short paragraph<textarea id="f_mission" rows="3"></textarea></label>
+        <div class="bp-h"><span>4</span> The phases <small>(the path it follows — 1 to 6)</small></div>
+        <div id="f_phases"></div>
+        <button type="button" class="btn sm ghost" id="addPhase">+ Add a phase</button>
+        <div class="bp-h"><span>5</span> Tools <small>(pick up to <b>4</b>) <span class="pill" id="toolCount"></span></small></div>
+        <div class="tools" id="f_tools"></div>
+        <div id="cmdBox" hidden><label>Commands <code>run_command</code> may run <small>(one per line — a command is allowed only if it <i>starts with</i> an entry)</small><textarea id="f_cmds" rows="2"></textarea></label></div>
+        <div class="bp-h"><span>6</span> Rules &amp; safety</div>
+        <label>Folders it may <b>change</b> <small>(comma-separated; end folders with “/”)</small><input id="f_writable" type="text"></label>
+        <label>Rules — things it must always / never do <small>(one per line)</small><textarea id="f_rules" rows="3"></textarea></label>
+        <label>Hand over to a human when… <small>(one per line)</small><textarea id="f_esc" rows="2"></textarea></label>
+        <label>Final answer format<textarea id="f_final" rows="2"></textarea></label>
+        <div class="row"><button type="button" class="btn sm ghost" id="bpExample">↺ Reset to the example</button><button type="button" class="btn sm ghost" id="bpClear">Clear all</button></div>
+      </form>
+      <div class="bp-out">
+        <div class="checks" id="bpChecks" aria-live="polite"></div>
+        <div class="seg" id="bpTabs" role="group" aria-label="Generated file"><button data-v="agent">agent.md</button><button data-v="toml">agent.toml</button><button data-v="guard">guardrails.toml</button><button data-v="goal">goal.md</button></div>
+        <p class="where" id="bpWhere"></p>
+        <div class="cmd"><pre class="code" id="bpCode" tabindex="0" aria-label="Generated file"></pre><button class="copy" id="bpCopy" data-copy="">Copy</button></div>
+        <div class="row"><button class="btn sm" id="bpDl">⬇ Download this file</button><button class="btn sm ghost" id="bpDlAll">⬇ Download all four</button></div>
+        <div class="note calm"><p><b>Then:</b> save the four files into <code>my_agent/</code> (replacing the examples), copy your input files into <code>my_agent/workspace/</code>, run <code>python -m app doctor</code> — and <code>python -m app</code>.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ stuck ═════════ -->
+<section class="sec" id="stuck" data-title="When something goes wrong">
+  <div class="wrap" style="max-width:900px">
+    <div class="sec-head reveal">
+      <p class="kicker">4 · When something goes wrong</p>
+      <h2>Start with one command.</h2>
+      <p class="lead"><code>python -m app doctor</code> checks your whole setup and explains how to fix every ✗. Still stuck? Find your symptom:</p>
+    </div>
+    <div id="faq"></div>
+    <p class="muted" style="margin-top:18px">More in the <a href="present.html#hb-trouble">handbook's troubleshooting</a>.</p>
+  </div>
+</section>
+
+<!-- ═════════ end ═════════ -->
+<section class="sec" id="end" data-title="What next">
+  <div class="wrap" style="max-width:860px">
+    <div class="checkpoint reveal" data-chapter-end>
+      <h3>✓ You're ready to keep going</h3>
+      <ul>
+        <li>You can <b>run</b> an agent, <b>read</b> what it did, and <b>change</b> its behaviour by editing a sentence.</li>
+        <li>Your agent is a folder: <code>agent.md</code> (what), <code>agent.toml</code> (tools), <code>guardrails.toml</code> (limits), <code>goal.md</code> (task).</li>
+        <li>When it misbehaves, the fix is almost never more code — make the weakest <b>phase</b> more specific.</li>
+      </ul>
+    </div>
+    <a class="next-card reveal" href="handbook.html"><span class="nk">Next up · Chapter 4 of 4</span><strong>The handbook</strong><span class="muted">The full reference: every folder and file, MCP, guardrails, tracing, three ways to run, words explained.</span><span class="go">Open the handbook</span></a>
+    <p class="muted" style="text-align:center;margin-top:20px;font-size:.88rem">Want to see how it works inside again? <a href="how-it-works.html">Back to chapter 2</a>.</p>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap">Hand-tossed by <a href="https://www.linkedin.com/in/kinjalk-jain" target="_blank" rel="noopener noreferrer">KINJALK</a> · <a href="index.html">Home</a> · <a href="present.html">Slide deck</a></div></footer>
+</main>
+
+<script src="assets/site.js"></script>
+<script src="assets/build.js"></script>
+<script>Site.init({ page: "build" });</script>
+</body>
+</html>

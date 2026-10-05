@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meet an agent — Build Your First AI Agent</title>
+<meta name="description" content="What is an AI agent, really? Watch one work, tour the pizza kitchen, and see what you actually write — in about six minutes, no experience needed.">
+<meta property="og:title" content="Meet an AI agent — a playful 6-minute introduction">
+<meta property="og:description" content="Same question, two answers: a chatbot talks, an agent does. Watch one work, then tour the pizza kitchen.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c98a4b'/%3E%3Ccircle cx='50' cy='50' r='38' fill='%23e5472d'/%3E%3Ccircle cx='38' cy='40' r='7' fill='%23f2b53a'/%3E%3Ccircle cx='62' cy='58' r='7' fill='%23f2b53a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/journey.css">
+</head>
+<body>
+<header id="topbar"></header>
+
+<main>
+<!-- ═════════ hero ═════════ -->
+<section class="hero sec" id="top" data-title="Most AI answers. An agent does.">
+  <div class="wrap">
+    <p class="kicker">Chapter 1 · about 6 minutes · playful</p>
+    <h1>Most AI <em>answers.</em><br>An agent <em>does.</em></h1>
+    <p class="lead">You've probably chatted with an AI. An <span data-g="agent">agent</span> is the next step: you give it a <b>goal</b>, and it works out the steps, uses <b>tools</b>, checks the results and keeps going until it's done. Let's meet one.</p>
+    <p class="scrollcue"><i aria-hidden="true"></i> Just scroll — or press → to jump ahead</p>
+  </div>
+</section>
+
+<!-- ═════════ 1 · chatbot vs agent ═════════ -->
+<section class="sec" id="hook" data-title="Same question, two answers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">1 · The difference</p>
+      <h2>Same question. Two very different answers.</h2>
+      <p class="lead">Ask both: <i>“Brief me on the files in this folder.”</i> Press the buttons and watch.</p>
+    </div>
+    <div class="card reveal" id="cmp">
+      <div class="toolbar"><div class="seg" id="cmpSeg" role="group" aria-label="Who do you ask?"><button data-v="bot">💬 Ask a chatbot</button><button data-v="agent">🤖 Ask an agent</button></div></div>
+      <div class="ask">🧑 “Brief me on the files in this folder.”</div>
+      <div class="reply" id="cmpOut" aria-live="polite"></div>
+    </div>
+    <div class="grid g3 three">
+      <div class="card reveal"><span class="em" aria-hidden="true">🎯</span><h3>A goal</h3><p>Not a question to answer — an outcome to reach: “brief me”, “find the risks”, “fix the failing test”.</p></div>
+      <div class="card reveal"><span class="em" aria-hidden="true">🧰</span><h3>Tools</h3><p>It can <i>do</i> things: list files, read them, search, write a report. Each tool returns <b>real output</b>, never a guess.</p></div>
+      <div class="card reveal"><span class="em" aria-hidden="true">🔁</span><h3>A loop</h3><p>Look → decide → act → look again. It stops when it believes the goal is met — and tells you what it did.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 2 · watch ═════════ -->
+<section class="sec" id="watch" data-title="Watch an agent work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">2 · See it think</p>
+      <h2>Watch an agent work — and guess its next move</h2>
+      <p class="lead">Pick a goal, then press <b>Next</b>. Every card is one thing the agent did. At one point it'll ask <b>you</b> to predict.</p>
+    </div>
+    <div class="card reveal" id="demo"></div>
+  </div>
+</section>
+
+<!-- ═════════ 3 · loop ═════════ -->
+<section class="sec" id="loop" data-title="The whole trick: a loop">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">3 · The whole trick</p>
+      <h2>It's just a loop.</h2>
+      <p class="lead">Everything you just watched is the same four beats, repeated. Press the button to run one lap.</p>
+    </div>
+    <div class="card reveal" id="lap"></div>
+  </div>
+</section>
+
+<!-- ═════════ 4 · kitchen (scrollytelling) ═════════ -->
+<section class="sec" id="kitchen" data-title="The pizza kitchen">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">4 · The kitchen</p>
+      <h2>An agent is a tiny pizza kitchen.</h2>
+      <p class="lead">Scroll slowly. Each part of the kitchen lights up as you meet it — and the toggle switches between pizza words and the real names.</p>
+    </div>
+    <div class="scrolly" id="kScrolly">
+      <div class="stage">
+        <div class="toolbar" style="margin-bottom:10px"><div class="seg" id="kMode" role="group" aria-label="Words"><button data-v="kitchen">🍕 Kitchen words</button><button data-v="real">🔧 Real names</button></div></div>
+        <div class="kmap" id="kMap" aria-label="The kitchen floor plan"></div>
+        <p class="muted kcap" id="kCap"></p>
+      </div>
+      <div class="steps" id="kSteps"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 5 · what you write ═════════ -->
+<section class="sec" id="write" data-title="What you actually write">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">5 · Your part</p>
+      <h2>So what do <i>you</i> write?</h2>
+      <p class="lead">Less than you'd fear. The loop, the tool plumbing, the safety net and the recording are <b>already built</b>. You write the parts that are specific to <i>your</i> problem — mostly in plain English.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card built reveal"><h3>✅ Already built for you</h3>
+        <ul class="ticks"><li><b>The loop</b> — ask, run tools, repeat, know when to stop</li><li><b>Tool calling & chaining</b> — results feed the next choice</li><li><b>Parallel tool calls</b> — independent tools run together</li><li><b>Rate limits & retries</b> — it waits and carries on</li><li><b>Guardrails engine</b> — blocks, asks a human, blanks out secrets</li><li><b>Recording</b> — every run saved, even a crash</li></ul></div>
+      <div class="card mine reveal"><h3>✍️ You write</h3>
+        <ul class="ticks"><li><b>The job description</b> <span class="badge live">most of your time</span><br><span class="muted">agent.md — in English</span></li><li><b>Know-how</b> <span class="muted">skills/*.md — in English</span></li><li><b>Which tools</b> <span class="muted">one line in agent.toml</span></li><li><b>Rules it can't break</b> <span class="muted">plain settings in guardrails.toml</span></li><li><b>Your input files</b> <span class="muted">copy them in</span></li></ul></div>
+    </div>
+    <h3 class="sub reveal">Peek at the real files</h3>
+    <div class="card reveal" id="peek"></div>
+    <div class="note calm reveal"><p><b>The headline.</b> The <i>path</i> your agent takes is written in your <b>prompt</b>, not in Python. Want different behaviour? Edit a sentence and run it again.</p></div>
+  </div>
+</section>
+
+<!-- ═════════ end ═════════ -->
+<section class="sec" id="end" data-title="What you now know">
+  <div class="wrap" style="max-width:860px">
+    <div class="checkpoint reveal" data-chapter-end>
+      <h3>✓ You now know…</h3>
+      <ul>
+        <li>An agent = a <b>goal</b> + <b>tools</b> + a <b>loop</b>. It acts, looks at the result, and decides again.</li>
+        <li>The kitchen: <b>order, safe, chef, loop, recipe, equipment, socket, inspector, camera</b>.</li>
+        <li>You mostly write <b>plain English</b> (<code>agent.md</code>); the machinery is already built.</li>
+      </ul>
+    </div>
+    <a class="next-card reveal" href="how-it-works.html"><span class="nk">Next up · Chapter 2 of 4</span><strong>How it really works</strong><span class="muted">Press Enter — then what? Watch a run, shift the gearbox of a tool call, and see which file does what.</span><span class="go">Continue</span></a>
+    <p class="muted" style="text-align:center;margin-top:20px;font-size:.88rem">Already know this? <a href="build.html">Jump to building yours</a>.</p>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap">Hand-tossed by <a href="https://www.linkedin.com/in/kinjalk-jain" target="_blank" rel="noopener noreferrer">KINJALK</a> · <a href="index.html">Home</a> · <a href="present.html">Slide deck</a></div></footer>
+</main>
+
+<script src="assets/site.js"></script>
+<script src="assets/journey.js"></script>
+<script>Site.init({ page: "journey" });</script>
+</body>
+</html>
